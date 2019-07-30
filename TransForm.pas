@@ -74,6 +74,7 @@ type
     JvRadioGroupSelectPiercing: TJvRadioGroup;
     JvPanel4: TJvPanel;
     JvRadioGroupCircleMesure: TJvRadioGroup;
+    JvPanel5: TJvPanel;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -410,13 +411,20 @@ begin
       Str := '/' + Str;
       JvMemoOut.Lines.Strings[MainForm.CallSubprogramList.Items[K]] := Str;
     end;
+  end;
 
-    for R := 0 to AllPircingList.Count - 1 do
+  for R := 0 to AllPircingList.Count - 1 do
+  begin
+    if MainForm.JvRadioGroupSelectPiercing.ItemIndex <> 8 then
     begin
-      Str := JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]];
-      Str := '/' + Str;
-      JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]] := Str;
-    end;
+      Str := 'G933[' + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 1).toString + ']';
+    end
+    else
+      Str := 'G933[' + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 2).toString + ']';
+
+    if JvCheckBoxSlashCall.Checked then Str := '/' + Str;
+
+    JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]] := Str;
   end;
 
   StatusProgress(70);

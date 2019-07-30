@@ -25,7 +25,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 1025
     Height = 618
-    ActivePage = TabSheetTransform
+    ActivePage = TabSheetGeometry
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
@@ -39,6 +39,8 @@ object MainForm: TMainForm
     TabPainter = JvTabDefaultPainter1
     ParentColor = False
     Color = clSilver
+    ExplicitLeft = -48
+    ExplicitTop = -8
     object TabSheetTransform: TTabSheet
       Caption = 'Transform'
       object JvPanel1: TJvPanel
@@ -54,101 +56,6 @@ object MainForm: TMainForm
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 0
-        object Button1: TButton
-          AlignWithMargins = True
-          Left = 3
-          Top = 474
-          Width = 317
-          Height = 44
-          Action = ActionExit
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Calibri'
-          Font.Style = []
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 0
-          ExplicitWidth = 411
-        end
-        object Button4: TButton
-          AlignWithMargins = True
-          Left = 3
-          Top = 374
-          Width = 317
-          Height = 44
-          Action = ActionSave
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Calibri'
-          Font.Style = []
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 1
-          ExplicitWidth = 411
-        end
-        object Button5: TButton
-          AlignWithMargins = True
-          Left = 3
-          Top = 324
-          Width = 317
-          Height = 44
-          Action = ActionSend
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Calibri'
-          Font.Style = []
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 2
-          ExplicitWidth = 411
-        end
-        object Button6: TButton
-          AlignWithMargins = True
-          Left = 3
-          Top = 424
-          Width = 317
-          Height = 44
-          Action = ActionAbout
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Calibri'
-          Font.Style = []
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 3
-          ExplicitWidth = 411
-        end
-        object Button2: TButton
-          AlignWithMargins = True
-          Left = 3
-          Top = 274
-          Width = 317
-          Height = 44
-          Action = ActionProcess
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Calibri'
-          Font.Style = []
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 4
-          ExplicitWidth = 411
-        end
         object JvCheckBoxSensorUp: TJvCheckBox
           AlignWithMargins = True
           Left = 5
@@ -168,7 +75,7 @@ object MainForm: TMainForm
           Font.Style = []
           ParentColor = False
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 0
           LinkedControls = <>
           HotTrackFont.Charset = DEFAULT_CHARSET
           HotTrackFont.Color = clWindowText
@@ -198,7 +105,7 @@ object MainForm: TMainForm
           Font.Style = []
           ParentColor = False
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 1
           LinkedControls = <>
           HotTrackFont.Charset = DEFAULT_CHARSET
           HotTrackFont.Color = clWindowText
@@ -227,7 +134,7 @@ object MainForm: TMainForm
           Font.Style = []
           ParentColor = False
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 2
           LinkedControls = <>
           HotTrackFont.Charset = DEFAULT_CHARSET
           HotTrackFont.Color = clWindowText
@@ -254,7 +161,7 @@ object MainForm: TMainForm
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 3
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
@@ -279,7 +186,7 @@ object MainForm: TMainForm
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 9
+          TabOrder = 4
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
@@ -303,7 +210,7 @@ object MainForm: TMainForm
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 5
           Visible = False
           WordWrap = True
           LinkedControls = <>
@@ -323,7 +230,7 @@ object MainForm: TMainForm
           HotTrackFont.Style = []
           Align = alTop
           BevelOuter = bvNone
-          TabOrder = 11
+          TabOrder = 6
           ExplicitWidth = 329
           object JvRadioGroupSelectPiercing: TJvRadioGroup
             AlignWithMargins = True
@@ -420,6 +327,125 @@ object MainForm: TMainForm
             TabOrder = 2
           end
         end
+        object JvPanel5: TJvPanel
+          Left = 0
+          Top = 264
+          Width = 323
+          Height = 257
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
+          Align = alBottom
+          BevelOuter = bvNone
+          Padding.Left = 70
+          Padding.Right = 70
+          TabOrder = 7
+          object Button1: TButton
+            AlignWithMargins = True
+            Left = 73
+            Top = 210
+            Width = 177
+            Height = 44
+            Action = ActionExit
+            Align = alBottom
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Calibri'
+            Font.Style = []
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            ExplicitLeft = -4
+            ExplicitTop = 73
+            ExplicitWidth = 315
+          end
+          object Button2: TButton
+            AlignWithMargins = True
+            Left = 73
+            Top = 10
+            Width = 177
+            Height = 44
+            Action = ActionProcess
+            Align = alBottom
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Calibri'
+            Font.Style = []
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            ExplicitWidth = 136
+          end
+          object Button4: TButton
+            AlignWithMargins = True
+            Left = 73
+            Top = 110
+            Width = 177
+            Height = 44
+            Action = ActionSave
+            Align = alBottom
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Calibri'
+            Font.Style = []
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            ExplicitLeft = 6
+            ExplicitTop = 95
+            ExplicitWidth = 315
+          end
+          object Button5: TButton
+            AlignWithMargins = True
+            Left = 73
+            Top = 60
+            Width = 177
+            Height = 44
+            Action = ActionSend
+            Align = alBottom
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Calibri'
+            Font.Style = []
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 3
+            ExplicitLeft = 3
+            ExplicitTop = 54
+            ExplicitWidth = 315
+          end
+          object Button6: TButton
+            AlignWithMargins = True
+            Left = 73
+            Top = 160
+            Width = 177
+            Height = 44
+            Action = ActionAbout
+            Align = alBottom
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Calibri'
+            Font.Style = []
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 4
+            ExplicitLeft = 3
+            ExplicitTop = 145
+            ExplicitWidth = 315
+          end
+        end
       end
       object JvPanel2: TJvPanel
         Left = 0
@@ -436,7 +462,7 @@ object MainForm: TMainForm
         TabOrder = 1
         ExplicitWidth = 600
         object JvxSplitter1: TJvxSplitter
-          Left = 340
+          Left = 347
           Top = 0
           Width = 3
           Height = 521
@@ -447,7 +473,7 @@ object MainForm: TMainForm
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 334
+          Width = 341
           Height = 515
           Align = alLeft
           Constraints.MinWidth = 200
@@ -467,9 +493,9 @@ object MainForm: TMainForm
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
-          Left = 346
+          Left = 353
           Top = 3
-          Width = 345
+          Width = 338
           Height = 515
           Align = alClient
           Constraints.MinWidth = 200
@@ -704,8 +730,8 @@ object MainForm: TMainForm
     end
   end
   object ActionList1: TActionList
-    Left = 632
-    Top = 80
+    Left = 528
+    Top = 64
     object ActionExit: TAction
       Caption = 'Exit'
       Hint = 'Leave the program '
@@ -756,8 +782,8 @@ object MainForm: TMainForm
     StorageOptions.BooleanStringFalseValues = 'FALSE, NO, N'
     FileName = 'Transformer.ini'
     SubStorages = <>
-    Left = 568
-    Top = 128
+    Left = 464
+    Top = 112
   end
   object JvFormStorage1: TJvFormStorage
     AppStorage = JvAppIniFileStorage1
@@ -767,23 +793,25 @@ object MainForm: TMainForm
       'JvCheckBoxDeleteNewTable.Checked'
       'JvCheckBoxSensorUp.Checked'
       'JvCheckBoxSlashCall.Checked'
-      'JvCheckBoxSaveChangedFile.Checked')
+      'JvCheckBoxSaveChangedFile.Checked'
+      'JvRadioGroupSelectPiercing.ItemIndex'
+      'JvRadioGroupCircleMesure.ItemIndex')
     StoredValues = <>
-    Left = 680
-    Top = 128
+    Left = 576
+    Top = 112
   end
   object JvDragDrop1: TJvDragDrop
     AllowDropElevation = True
     DropTarget = JvMemoIn
     OnDrop = JvDragDrop1Drop
-    Left = 480
-    Top = 384
+    Left = 376
+    Top = 368
   end
   object JvDragDrop2: TJvDragDrop
     DropTarget = JvMemoOut
     OnDrop = JvDragDrop2Drop
-    Left = 760
-    Top = 392
+    Left = 592
+    Top = 368
   end
   object JvSaveDialog1: TJvSaveDialog
     DefaultExt = 'LST'
@@ -792,7 +820,7 @@ object MainForm: TMainForm
     Title = 'S'
     Height = 0
     Width = 0
-    Left = 888
+    Left = 248
     Top = 152
   end
   object BComPort1: TBComPort
@@ -810,15 +838,15 @@ object MainForm: TMainForm
     Timeouts.WriteTotalMultiplier = 100
     Timeouts.WriteTotalConstant = 1000
     OnTxEmpty = BComPort1TxEmpty
-    Left = 624
-    Top = 296
+    Left = 512
+    Top = 232
   end
   object JvProgressComponent1: TJvProgressComponent
     Caption = 'Send file to machine'
     InfoLabel = 'Sending file :'
     OnClose = JvProgressComponent1Close
-    Left = 536
-    Top = 184
+    Left = 432
+    Top = 168
   end
   object JvTabDefaultPainter1: TJvTabDefaultPainter
     ActiveFont.Charset = DEFAULT_CHARSET
@@ -836,14 +864,14 @@ object MainForm: TMainForm
     DisabledFont.Height = -11
     DisabledFont.Name = 'Tahoma'
     DisabledFont.Style = []
-    Left = 756
-    Top = 238
+    Left = 252
+    Top = 214
   end
   object ImageList1: TImageList
     Height = 128
     Width = 128
-    Left = 620
-    Top = 439
+    Left = 516
+    Top = 423
     Bitmap = {
       494C010101003400340080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
@@ -9303,8 +9331,8 @@ object MainForm: TMainForm
   object JvDragDrop3: TJvDragDrop
     DropTarget = Tcogeoview1
     OnDrop = JvDragDrop3Drop
-    Left = 620
-    Top = 382
+    Left = 516
+    Top = 366
   end
   object JvPopupMenu1: TJvPopupMenu
     ImageMargin.Left = 0
@@ -9313,8 +9341,8 @@ object MainForm: TMainForm
     ImageMargin.Bottom = 0
     ImageSize.Height = 0
     ImageSize.Width = 0
-    Left = 476
-    Top = 254
+    Left = 372
+    Top = 238
     object Find: TMenuItem
       Action = ActionFind
     end
@@ -9325,13 +9353,13 @@ object MainForm: TMainForm
   object JvFindReplace1: TJvFindReplace
     EditControl = JvMemoIn
     Options = [frDown, frFindNext, frDisableMatchCase, frDisableWholeWord]
-    Left = 484
-    Top = 438
+    Left = 380
+    Top = 422
   end
   object JvFindReplace2: TJvFindReplace
     EditControl = JvMemoOut
     Options = [frDown, frFindNext, frDisableMatchCase, frDisableWholeWord]
-    Left = 764
-    Top = 446
+    Left = 588
+    Top = 422
   end
 end
