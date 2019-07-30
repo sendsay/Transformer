@@ -71,7 +71,9 @@ type
     ActionReplace: TAction;
     JvFindReplace1: TJvFindReplace;
     JvFindReplace2: TJvFindReplace;
-    JvRadioGroup1: TJvRadioGroup;
+    JvRadioGroupSelectPiercing: TJvRadioGroup;
+    JvPanel4: TJvPanel;
+    JvRadioGroupCircleMesure: TJvRadioGroup;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
