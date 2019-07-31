@@ -111,6 +111,7 @@ type
     ProgramNumberList : TList<Integer>;             //Program number pos
     PircingList : TList<Integer>;                   //Pircing pos list
     AllPircingList : TList<Integer>;                //All pircing pos list
+    MesureList : TList<Integer>;                    //Mesured point list
     FNameIn : string;
     FNameOut: string;
 
@@ -229,6 +230,10 @@ begin
           SearchPircing := True;
         end;
 
+        Expression := 'N\d+G934\[\d*\]';                 //Gets mesured point pos
+        if Exec(Str) then
+          MainForm.MesureList.Add(I);
+
         if SearchPircing then                //Gets all pircing pos
         begin
           Expression := 'N\d+G933\[\d*\]';
@@ -275,7 +280,6 @@ begin
 
   SetStatus(0, Format('Lines: %d', [JvMemoIn.Lines.Count]));
   SetStatus(1, Format('File: %s', [FNameIn]));
-
 
   ViewFName := ChangeFileExt(FNameIn, '.tmt');
 
@@ -336,6 +340,7 @@ var
   S: Integer;
   FIleSize: Int64;
   MaxFileLength: Integer;
+  Q: Integer;
 begin
   StatusProgress(15);
 
@@ -379,7 +384,7 @@ begin
       JvMemoOut.Lines.Add(Str);
   end;
 
-  StatusProgress(30);
+  StatusProgress(25);
 
   //Change coord table
   if JvRadioGroupSelectTable.ItemIndex <> 0 then
@@ -400,7 +405,7 @@ begin
     end;
   end;
 
-  StatusProgress(45);
+  StatusProgress(35);
 
   //Slash call subprogram
   if JvCheckBoxSlashCall.Checked then
@@ -428,6 +433,18 @@ begin
     if JvCheckBoxSlashCall.Checked then Str := '/' + Str;
 
     JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]] := Str;
+  end;
+
+  StatusProgress(50);
+
+  //Change mwsured point mode
+  for Q := 0 to MainForm.MesureList.Count - 1 do
+  begin
+     Str := JvMemoIn.Lines.Strings[MainForm.MesureList.Items[Q]];
+     SetLength(Str, Length(Str) - 2);
+     Str := Str + MainForm.JvRadioGroupCircleMesure.ItemIndex.ToString + ']';
+
+     JvMemoOut.Lines.Strings[MainForm.MesureList.Items[Q]] := Str;
   end;
 
   StatusProgress(70);
@@ -784,6 +801,7 @@ begin
   ProgramNumberList := TList<Integer>.Create;
   PircingList := TList<Integer>.Create;
   AllPircingList := TList<Integer>.Create;
+  MesureList :=TList<Integer>.Create;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -794,6 +812,7 @@ begin
   FreeAndNil(ProgramNumberList);
   FreeAndNil(PircingList);
   FreeAndNil(AllPircingList);
+  FreeAndNil(MesureList);
 end;
 
 procedure TMainForm.FormResize(Sender: TObject);
