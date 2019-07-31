@@ -415,12 +415,15 @@ begin
 
   for R := 0 to AllPircingList.Count - 1 do
   begin
+    Str := JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]];
+    SetLength(Str, (Length(Str) - 2));
+
     if MainForm.JvRadioGroupSelectPiercing.ItemIndex <> 8 then
     begin
-      Str := 'G933[' + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 1).toString + ']';
+      Str := Str + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 1).ToString +']';
     end
     else
-      Str := 'G933[' + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 2).toString + ']';
+      Str := Str + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 2 ).ToString +']';
 
     if JvCheckBoxSlashCall.Checked then Str := '/' + Str;
 

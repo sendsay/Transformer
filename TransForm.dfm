@@ -25,7 +25,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 1025
     Height = 618
-    ActivePage = TabSheetGeometry
+    ActivePage = TabSheetTransform
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
@@ -39,8 +39,6 @@ object MainForm: TMainForm
     TabPainter = JvTabDefaultPainter1
     ParentColor = False
     Color = clSilver
-    ExplicitLeft = -48
-    ExplicitTop = -8
     object TabSheetTransform: TTabSheet
       Caption = 'Transform'
       object JvPanel1: TJvPanel
@@ -82,9 +80,6 @@ object MainForm: TMainForm
           HotTrackFont.Height = -16
           HotTrackFont.Name = 'Calibri'
           HotTrackFont.Style = []
-          ExplicitLeft = 8
-          ExplicitTop = 123
-          ExplicitWidth = 407
         end
         object JvCheckBoxDeleteNewTable: TJvCheckBox
           AlignWithMargins = True
@@ -112,8 +107,6 @@ object MainForm: TMainForm
           HotTrackFont.Height = -16
           HotTrackFont.Name = 'Calibri'
           HotTrackFont.Style = []
-          ExplicitTop = 304
-          ExplicitWidth = 407
         end
         object JvCheckBoxSlashCall: TJvCheckBox
           AlignWithMargins = True
@@ -141,8 +134,6 @@ object MainForm: TMainForm
           HotTrackFont.Height = -16
           HotTrackFont.Name = 'Calibri'
           HotTrackFont.Style = []
-          ExplicitTop = 277
-          ExplicitWidth = 407
         end
         object JvCheckBoxInnerHoles: TJvCheckBox
           AlignWithMargins = True
@@ -165,9 +156,6 @@ object MainForm: TMainForm
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
-          ExplicitLeft = 8
-          ExplicitTop = 150
-          ExplicitWidth = 319
         end
         object JvCheckBoxSaveChangedFile: TJvCheckBox
           AlignWithMargins = True
@@ -190,8 +178,6 @@ object MainForm: TMainForm
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
-          ExplicitTop = 356
-          ExplicitWidth = 407
         end
         object JvCheckBoxDelNumberStr: TJvCheckBox
           AlignWithMargins = True
@@ -215,8 +201,6 @@ object MainForm: TMainForm
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
-          ExplicitTop = 331
-          ExplicitWidth = 407
         end
         object JvPanel4: TJvPanel
           Left = 0
@@ -231,7 +215,6 @@ object MainForm: TMainForm
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 6
-          ExplicitWidth = 329
           object JvRadioGroupSelectPiercing: TJvRadioGroup
             AlignWithMargins = True
             Left = 155
@@ -264,7 +247,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 0
-            ExplicitHeight = 129
           end
           object JvRadioGroupSelectTable: TJvRadioGroup
             AlignWithMargins = True
@@ -295,7 +277,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 1
-            ExplicitHeight = 129
           end
           object JvRadioGroupCircleMesure: TJvRadioGroup
             AlignWithMargins = True
@@ -359,9 +340,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 0
-            ExplicitLeft = -4
-            ExplicitTop = 73
-            ExplicitWidth = 315
           end
           object Button2: TButton
             AlignWithMargins = True
@@ -380,7 +358,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 1
-            ExplicitWidth = 136
           end
           object Button4: TButton
             AlignWithMargins = True
@@ -399,9 +376,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 2
-            ExplicitLeft = 6
-            ExplicitTop = 95
-            ExplicitWidth = 315
           end
           object Button5: TButton
             AlignWithMargins = True
@@ -420,9 +394,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 3
-            ExplicitLeft = 3
-            ExplicitTop = 54
-            ExplicitWidth = 315
           end
           object Button6: TButton
             AlignWithMargins = True
@@ -441,9 +412,6 @@ object MainForm: TMainForm
             ParentShowHint = False
             ShowHint = True
             TabOrder = 4
-            ExplicitLeft = 3
-            ExplicitTop = 145
-            ExplicitWidth = 315
           end
         end
       end
@@ -460,14 +428,12 @@ object MainForm: TMainForm
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 600
         object JvxSplitter1: TJvxSplitter
           Left = 347
           Top = 0
           Width = 3
           Height = 521
           Align = alLeft
-          ExplicitLeft = 388
         end
         object JvMemoIn: TJvMemo
           AlignWithMargins = True
@@ -511,8 +477,6 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 2
           OnMouseUp = JvMemoOutMouseUp
-          ExplicitLeft = 209
-          ExplicitWidth = 200
         end
       end
       object JvPanel3: TJvPanel
@@ -528,7 +492,6 @@ object MainForm: TMainForm
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 1014
         object JvLabel1: TJvLabel
           AlignWithMargins = True
           Left = 7
@@ -700,7 +663,6 @@ object MainForm: TMainForm
             Width = 100
             Control = JvProgressBar1
           end>
-        ExplicitWidth = 1014
         object JvProgressBar1: TJvProgressBar
           Left = 463
           Top = 3
@@ -713,7 +675,6 @@ object MainForm: TMainForm
     object TabSheetGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 2
-      ExplicitWidth = 1014
       object Tcogeoview1: TTcogeoview
         Left = 0
         Top = 0
@@ -873,7 +834,7 @@ object MainForm: TMainForm
     Left = 516
     Top = 423
     Bitmap = {
-      494C010101003400340080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101003800380080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A
