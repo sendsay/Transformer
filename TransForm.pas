@@ -14,7 +14,7 @@ uses
   JvComCtrls, Vcl.TabNotBk, System.ImageList, Vcl.ImgList, JvImageList,
   Vcl.ButtonGroup, JvArrayButton, JvXPCore, JvXPButtons, Vcl.OleCtrls,
   TCOGEOVIEWLib_TLB, JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
-  Vcl.StdActns ;
+  Vcl.StdActns, System.TypInfo ;
 
 type
   TMainForm = class(TForm)
@@ -83,6 +83,8 @@ type
     JvPanel11: TJvPanel;
     JvPanel7: TJvPanel;
     JvPanel6: TJvPanel;
+    JvCheckBoxLookAHead: TJvCheckBox;
+    JvCheckBoxFastOrigin: TJvCheckBox;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -352,9 +354,13 @@ var
   MaxFileLength: Integer;
   Q: Integer;
 begin
-  StatusProgress(15);
+  ButtonEnabled(False);
+  Application.ProcessMessages;
+  StatusProgress(5);
 
   MainForm.Cursor := crHourGlass;
+
+
 
   Reg := TRegExpr.Create;
   DelNewTable := False;
@@ -363,10 +369,10 @@ begin
   StrNumber := 0;
   M := 0;
 
-  ButtonEnabled(False);
-
   JvMemoOut.Clear;
   JvMemoOut.Lines.BeginUpdate;
+
+  Application.ProcessMessages;
 
   MaxFileLength := JvAppIniFileStorage1.ReadInteger('Data\MaxFileLngth=', 300000);
 
@@ -382,6 +388,7 @@ begin
         Delete(Str, 1, Reg.MatchLen[0]);
     end;
 
+      Application.ProcessMessages;
   //delete new table
 //    if JvCheckBoxDeleteNewTable.Checked then
 //    begin
@@ -412,6 +419,7 @@ begin
       StrNumber := MainForm.WithOutHSenList.Items[L];
       Reg.Expression := '\[\d+\]';
       MainForm.JvMemoOut.Lines.Strings[StrNumber] := Reg.Replace(Str, Format('[%d]', [1]), False);
+      Application.ProcessMessages;
     end;
   end;
 
@@ -425,6 +433,7 @@ begin
       Str := JvMemoOut.Lines.Strings[MainForm.CallSubprogramList.Items[K]];
       Str := '/' + Str;
       JvMemoOut.Lines.Strings[MainForm.CallSubprogramList.Items[K]] := Str;
+      Application.ProcessMessages;
     end;
   end;
 
@@ -443,6 +452,7 @@ begin
     if JvCheckBoxSlashCall.Checked then Str := '/' + Str;
 
     JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]] := Str;
+    Application.ProcessMessages;
   end;
 
   StatusProgress(50);
@@ -455,6 +465,7 @@ begin
      Str := Str + MainForm.JvRadioGroupCircleMesure.ItemIndex.ToString + ']';
 
      JvMemoOut.Lines.Strings[MainForm.MesureList.Items[Q]] := Str;
+     Application.ProcessMessages;
   end;
 
   StatusProgress(70);
@@ -471,6 +482,7 @@ begin
       ChangeNameStr := ChangeName(Reg.Match[0], MainForm.JvEditProgNumber.Text);
       MainForm.JvMemoOut.Lines.Strings[StrNumber] := Reg.Replace(Str, ChangeNameStr, False)
     end;
+    Application.ProcessMessages;
   end;
 
   for R := 0 to ProgramNumberList.Count - 1 do
@@ -483,6 +495,7 @@ begin
     begin
       ChangeNameStr := ChangeName(Reg.Match[0], MainForm.JvEditProgNumber.Text);
       MainForm.JvMemoOut.Lines.Strings[StrNumber] := Reg.Replace(Str, ChangeNameStr, False);
+      Application.ProcessMessages;
     end;
   end;
   Str := JvMemoOut.Lines.Strings[iProgramNamePos];
@@ -516,6 +529,7 @@ begin
     Reg.Expression := '\[\d+\]';
     MainForm.JvMemoOut.Lines.Strings[StrNumber] := Reg.Replace(Str, '[' +
              NewTable + ']', False);
+    Application.ProcessMessages;
   end;
   //last pircing
   if JvCheckBoxInnerHoles.Checked then
@@ -554,6 +568,8 @@ begin
         SearchPircing := False;
       end;
     end;
+
+    Application.ProcessMessages;
   end;
 
     for L := 0 to PircingList.Count - 1 do
@@ -588,6 +604,8 @@ begin
       end
       else
         OnePircingContour := True;
+
+      Application.ProcessMessages;
     end;
   end;
 
@@ -743,41 +761,73 @@ begin
 end;
 
 procedure TMainForm.ButtonEnabled(Enabled: boolean);
+var
+  I : Integer;
+  S : string;
 begin
-  if Enabled then
-  begin
-    ActionProcess.Enabled := True;
-    ActionSend.Enabled := True;
-    ActionSave.Enabled := True;
-    ActionExit.Enabled := True;
-    ActionAbout.Enabled := True;
-    JvEditProgName.Enabled := True;
-    JvEditTechTable.Enabled := True;
-    JvEditProgNumber.Enabled := True;
-    JvRadioGroupSelectTable.Enabled := True;
-    JvCheckBoxInnerHoles.Enabled := True;
-    JvCheckBoxSensorUp.Enabled := True;
-    JvCheckBoxSlashCall.Enabled := True;
-    JvCheckBoxDelNumberStr.Enabled := True;
-    JvCheckBoxDeleteNewTable.Enabled := True;
-  end
-  else
-  begin
-    ActionProcess.Enabled := False;
-    ActionSend.Enabled := False;
-    ActionSave.Enabled := False;
-    ActionExit.Enabled := False;
-    ActionAbout.Enabled := False;
-    JvEditProgName.Enabled := False;
-    JvEditTechTable.Enabled := False;
-    JvEditProgNumber.Enabled := False;
-    JvRadioGroupSelectTable.Enabled := False;
-    JvCheckBoxInnerHoles.Enabled := False;
-    JvCheckBoxSensorUp.Enabled := False;
-    JvCheckBoxSlashCall.Enabled := False;
-    JvCheckBoxDelNumberStr.Enabled := False;
-    JvCheckBoxDeleteNewTable.Enabled := False;
-  end;
+
+
+    for I := 0 to MainForm.ComponentCount -1 do
+    begin
+      if ((MainForm.Components[I] is TButton) or (MainForm.Components[I] is TJvPanel) or (MainForm.Components[I] is TJvRadioGroup) or (MainForm.Components[I] is TJvCheckBox) or (MainForm.Components[I] is TJvEdit)) then
+        if Enabled then TControl(Components[I]).Enabled := True
+        else TControl(Components[I]).Enabled := False;
+      Application.ProcessMessages;
+
+      if GetPropInfo(MainForm.Components[I].ClassInfo, 'Cursor') <> nil then
+        if Enabled then       
+          TControl(Components[I]).Cursor := crDefault
+        else
+          TControl(Components[I]).Cursor := crHourGlass;
+
+      S := MainForm.Components[I].ClassName;
+    end;
+
+
+
+
+
+
+  {  if Enabled then
+    begin
+      ActionProcess.Enabled := True;
+      ActionSend.Enabled := True;
+      ActionSave.Enabled := True;
+      ActionExit.Enabled := True;
+      ActionAbout.Enabled := True;
+      JvEditProgName.Enabled := True;
+      JvEditTechTable.Enabled := True;
+      JvEditProgNumber.Enabled := True;
+      JvRadioGroupSelectTable.Enabled := True;
+      JvRadioGroupCircleMesure.Enabled := True;
+      JvRadioGroupSelectPiercing.Enabled := True;
+      JvCheckBoxInnerHoles.Enabled := True;
+      JvCheckBoxSensorUp.Enabled := True;
+      JvCheckBoxSlashCall.Enabled := True;
+      JvCheckBoxDelNumberStr.Enabled := True;
+      JvCheckBoxDeleteNewTable.Enabled := True;
+      JvCheckBoxSaveChangedFile.Enabled := True;
+    end
+    else
+    begin
+      ActionProcess.Enabled := False;
+      ActionSend.Enabled := False;
+      ActionSave.Enabled := False;
+      ActionExit.Enabled := False;
+      ActionAbout.Enabled := False;
+      JvEditProgName.Enabled := False;
+      JvEditTechTable.Enabled := False;
+      JvEditProgNumber.Enabled := False;
+      JvRadioGroupSelectTable.Enabled := False;
+      JvRadioGroupCircleMesure.Enabled := False;
+      JvRadioGroupSelectPiercing.Enabled := False;
+      JvCheckBoxInnerHoles.Enabled := False;
+      JvCheckBoxSensorUp.Enabled := False;
+      JvCheckBoxSlashCall.Enabled := False;
+      JvCheckBoxDelNumberStr.Enabled := False;
+      JvCheckBoxDeleteNewTable.Enabled := False;
+      JvCheckBoxSaveChangedFile.Enabled := False;
+    end;   }
 end;
 
 function TMainForm.ChangeName(OldNumber, NewNumber: string): string;

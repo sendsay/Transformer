@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Transformer'
-  ClientHeight = 618
-  ClientWidth = 1025
+  ClientHeight = 785
+  ClientWidth = 992
   Color = clBtnFace
   Constraints.MinHeight = 645
   Constraints.MinWidth = 930
@@ -23,8 +23,8 @@ object MainForm: TMainForm
   object JvPageControl1: TJvPageControl
     Left = 0
     Top = 0
-    Width = 1025
-    Height = 618
+    Width = 992
+    Height = 785
     ActivePage = TabSheetTransform
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -39,13 +39,17 @@ object MainForm: TMainForm
     TabPainter = JvTabDefaultPainter1
     ParentColor = False
     Color = clSilver
+    ExplicitWidth = 1025
+    ExplicitHeight = 618
     object TabSheetTransform: TTabSheet
       Caption = 'Transform'
+      ExplicitWidth = 1017
+      ExplicitHeight = 584
       object JvPanel1: TJvPanel
-        Left = 694
+        Left = 661
         Top = 41
         Width = 323
-        Height = 521
+        Height = 688
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
         HotTrackFont.Height = -11
@@ -54,6 +58,8 @@ object MainForm: TMainForm
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = 694
+        ExplicitHeight = 521
         object JvCheckBoxSensorUp: TJvCheckBox
           AlignWithMargins = True
           Left = 5
@@ -311,7 +317,7 @@ object MainForm: TMainForm
         end
         object JvPanel5: TJvPanel
           Left = 0
-          Top = 341
+          Top = 508
           Width = 323
           Height = 180
           HotTrackFont.Charset = DEFAULT_CHARSET
@@ -322,6 +328,7 @@ object MainForm: TMainForm
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 7
+          ExplicitTop = 341
           object JvPanel11: TJvPanel
             Left = 0
             Top = 0
@@ -541,12 +548,58 @@ object MainForm: TMainForm
             end
           end
         end
+        object JvCheckBoxLookAHead: TJvCheckBox
+          AlignWithMargins = True
+          Left = 5
+          Top = 370
+          Width = 313
+          Height = 17
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Align = alTop
+          Caption = 'Look a head'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Calibri'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 8
+          WordWrap = True
+          LinkedControls = <>
+          AutoSize = False
+          ExplicitTop = 395
+        end
+        object JvCheckBoxFastOrigin: TJvCheckBox
+          AlignWithMargins = True
+          Left = 5
+          Top = 395
+          Width = 313
+          Height = 17
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Align = alTop
+          Caption = 'Fast move to origin'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Calibri'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 9
+          WordWrap = True
+          LinkedControls = <>
+          AutoSize = False
+          ExplicitTop = 420
+        end
       end
       object JvPanel2: TJvPanel
         Left = 0
         Top = 41
-        Width = 694
-        Height = 521
+        Width = 661
+        Height = 688
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
         HotTrackFont.Height = -11
@@ -555,19 +608,22 @@ object MainForm: TMainForm
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitWidth = 694
+        ExplicitHeight = 521
         object JvxSplitter1: TJvxSplitter
           Left = 347
           Top = 0
           Width = 3
-          Height = 521
+          Height = 688
           Align = alLeft
+          ExplicitHeight = 521
         end
         object JvMemoIn: TJvMemo
           AlignWithMargins = True
           Left = 3
           Top = 3
           Width = 341
-          Height = 515
+          Height = 682
           Align = alLeft
           Constraints.MinWidth = 200
           Font.Charset = DEFAULT_CHARSET
@@ -583,13 +639,14 @@ object MainForm: TMainForm
           TabOrder = 1
           OnChange = JvMemoInChange
           OnMouseUp = JvMemoInMouseUp
+          ExplicitHeight = 515
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
           Left = 353
           Top = 3
-          Width = 338
-          Height = 515
+          Width = 305
+          Height = 682
           Align = alClient
           Constraints.MinWidth = 200
           Font.Charset = DEFAULT_CHARSET
@@ -604,12 +661,14 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 2
           OnMouseUp = JvMemoOutMouseUp
+          ExplicitWidth = 338
+          ExplicitHeight = 515
         end
       end
       object JvPanel3: TJvPanel
         Left = 0
         Top = 0
-        Width = 1017
+        Width = 984
         Height = 41
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
@@ -619,6 +678,7 @@ object MainForm: TMainForm
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 2
+        ExplicitWidth = 1017
         object JvLabel1: TJvLabel
           AlignWithMargins = True
           Left = 7
@@ -767,8 +827,8 @@ object MainForm: TMainForm
       end
       object JvStatusBar1: TJvStatusBar
         Left = 0
-        Top = 562
-        Width = 1017
+        Top = 729
+        Width = 984
         Height = 22
         Panels = <
           item
@@ -790,6 +850,8 @@ object MainForm: TMainForm
             Width = 100
             Control = JvProgressBar1
           end>
+        ExplicitTop = 562
+        ExplicitWidth = 1017
         object JvProgressBar1: TJvProgressBar
           Left = 463
           Top = 3
@@ -802,11 +864,13 @@ object MainForm: TMainForm
     object TabSheetGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 2
+      ExplicitWidth = 1017
+      ExplicitHeight = 584
       object Tcogeoview1: TTcogeoview
         Left = 0
         Top = 0
-        Width = 1017
-        Height = 584
+        Width = 984
+        Height = 751
         Align = alClient
         TabOrder = 0
         ExplicitLeft = 64
@@ -889,7 +953,8 @@ object MainForm: TMainForm
       'JvCheckBoxSlashCall.Checked'
       'JvCheckBoxSaveChangedFile.Checked'
       'JvRadioGroupSelectPiercing.ItemIndex'
-      'JvRadioGroupCircleMesure.ItemIndex')
+      'JvRadioGroupCircleMesure.ItemIndex'
+      'JvCheckBoxLookAHead.Checked')
     StoredValues = <>
     Left = 576
     Top = 112
