@@ -75,6 +75,14 @@ type
     JvPanel4: TJvPanel;
     JvRadioGroupCircleMesure: TJvRadioGroup;
     JvPanel5: TJvPanel;
+    Jump1: TMenuItem;
+    ActionJump: TAction;
+    JvPanel8: TJvPanel;
+    JvPanel9: TJvPanel;
+    JvPanel10: TJvPanel;
+    JvPanel11: TJvPanel;
+    JvPanel7: TJvPanel;
+    JvPanel6: TJvPanel;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -94,9 +102,10 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure JvMemoOutMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure Find1Click(Sender: TObject);
     procedure ActionReplaceExecute(Sender: TObject);
     procedure ActionFindExecute(Sender: TObject);
+    procedure JvRadioGroupSelectPiercingClick(Sender: TObject);
+    procedure ActionJumpExecute(Sender: TObject);
   private
     { Private declarations }
     FBreak: Boolean;
@@ -129,6 +138,8 @@ type
 
 var
   MainForm: TMainForm;
+     procedure ShowList(lst : TList<Integer>);                // Show any list items
+
 
 implementation
 
@@ -167,6 +178,7 @@ begin
   MainForm.ProgramNumberList.Clear;
   MainForm.PircingList.Clear;
   MainForm.AllPircingList.Clear;
+  MainForm.MesureList.Clear;
 
   Reg := TRegExpr.Create;
 
@@ -230,7 +242,7 @@ begin
           SearchPircing := True;
         end;
 
-        Expression := 'N\d+G934\[\d*\]';                 //Gets mesured point pos
+        Expression := 'N\d+G934\[\d*\]';     //Gets mesured point pos
         if Exec(Str) then
           MainForm.MesureList.Add(I);
 
@@ -293,14 +305,6 @@ begin
   MainForm.Cursor := crDefault;
 end;
 
-procedure TMainForm.Find1Click(Sender: TObject);
-begin
-  case CurrMemo of
-    1 : MainForm.JvMemoIn.CutToClipboard;
-    2 : MainForm.JvMemoOut.CutToClipboard;
-  end;
-end;
-
 procedure TMainForm.ActionAboutExecute(Sender: TObject);
 begin
   AboutForm.ShowModal;
@@ -317,6 +321,12 @@ begin
     1 : MainForm.JvFindReplace1.Find;
     2 : MainForm.JvFindReplace2.Find;
   end;
+end;
+
+procedure TMainForm.ActionJumpExecute(Sender: TObject);
+begin
+
+  MainForm.JvMemoIn.Perform(EM_LINESCROLL,0,100) ;
 end;
 
 procedure TMainForm.ActionProcessExecute(Sender: TObject);
@@ -707,7 +717,7 @@ begin
       BComPort1.WriteStr(Buf);
       Inc(N);
       JvProgressComponent1.ProgressPosition := JvProgressComponent1.ProgressPosition + 1;
-      JvProgressComponent1.InfoLabel := 'Sending file : ' + FNameOut + ' | Bytes remain: ' + (F.Size - (N * PackSize)).ToString;
+      JvProgressComponent1.InfoLabel := 'Bytes remain: ' + (F.Size - (N * PackSize)).ToString;
     until N = PackCount;
 
     if not FBreak then
@@ -881,6 +891,15 @@ begin
 end;
 
 
+procedure TMainForm.JvRadioGroupSelectPiercingClick(Sender: TObject);
+begin
+  case MainForm.JvRadioGroupSelectPiercing.ItemIndex of
+    3 : ShowMessage('WARNING!!! That mode is option!');
+    7 : ShowMessage('WARNING!!! That mode is option!');
+    8 : ShowMessage('WARNING!!! That mode doesn''t work!');
+  end;
+end;
+
 procedure TMainForm.SetStatus(Panel: Integer; Text: string);
 begin
   MainForm.JvStatusBar1.Panels[Panel].Text := Text;
@@ -890,6 +909,21 @@ procedure TMainForm.StatusProgress(Progress : Integer);
 begin
   MainForm.JvProgressBar1.Position := Progress;
   Application.ProcessMessages;
+end;
+
+procedure ShowList(lst : TList<Integer>);
+var
+  I: Integer;
+  Str : string;
+begin
+  for I := 0 to lst.Count-1 do
+  begin
+    Str := Str + lst.Items[I].ToString + #10#13;
+
+  end;
+
+
+  ShowMessage(Str);
 end;
 
 end.
