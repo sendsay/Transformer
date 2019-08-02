@@ -410,6 +410,11 @@ begin
     JvMemoOut.Lines.Strings[iCoordTablePos] := Format(Str + ' G%d', [53 + JvRadioGroupSelectTable.ItemIndex]);
   end;
 
+  if JvCheckBoxLookAHead.Checked then
+  begin
+    JvMemoOut.Lines.Strings[iCoordTablePos] := JvMemoOut.Lines.Strings[iCoordTablePos] + ' G108';
+  end;
+
   //With out height sensor
   if JvCheckBoxSensorUp.Checked then
   begin
@@ -774,13 +779,10 @@ begin
         else TControl(Components[I]).Enabled := False;
       Application.ProcessMessages;
 
-      if GetPropInfo(MainForm.Components[I].ClassInfo, 'Cursor') <> nil then
-        if Enabled then       
-          TControl(Components[I]).Cursor := crDefault
-        else
-          TControl(Components[I]).Cursor := crHourGlass;
-
-      S := MainForm.Components[I].ClassName;
+      if Enabled then
+        MainForm.TabSheetTransform.Cursor := crDefault
+      else
+        MainForm.TabSheetTransform.Cursor := crHourGlass;
     end;
 
 

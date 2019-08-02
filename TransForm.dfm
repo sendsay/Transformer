@@ -39,12 +39,8 @@ object MainForm: TMainForm
     TabPainter = JvTabDefaultPainter1
     ParentColor = False
     Color = clSilver
-    ExplicitWidth = 1025
-    ExplicitHeight = 618
     object TabSheetTransform: TTabSheet
       Caption = 'Transform'
-      ExplicitWidth = 1017
-      ExplicitHeight = 584
       object JvPanel1: TJvPanel
         Left = 661
         Top = 41
@@ -58,8 +54,6 @@ object MainForm: TMainForm
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 694
-        ExplicitHeight = 521
         object JvCheckBoxSensorUp: TJvCheckBox
           AlignWithMargins = True
           Left = 5
@@ -328,7 +322,6 @@ object MainForm: TMainForm
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 7
-          ExplicitTop = 341
           object JvPanel11: TJvPanel
             Left = 0
             Top = 0
@@ -354,17 +347,17 @@ object MainForm: TMainForm
               HotTrackFont.Style = []
               Align = alRight
               BevelOuter = bvNone
-              Padding.Left = 2
-              Padding.Top = 2
-              Padding.Right = 2
-              Padding.Bottom = 2
+              Padding.Left = 1
+              Padding.Top = 1
+              Padding.Right = 1
+              Padding.Bottom = 1
               TabOrder = 0
               object Button5: TButton
                 AlignWithMargins = True
-                Left = 5
-                Top = 5
-                Width = 153
-                Height = 80
+                Left = 4
+                Top = 4
+                Width = 155
+                Height = 82
                 Action = ActionSend
                 Align = alClient
                 Font.Charset = DEFAULT_CHARSET
@@ -376,10 +369,10 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 16
-                ExplicitTop = 8
-                ExplicitWidth = 71
-                ExplicitHeight = 31
+                ExplicitLeft = 5
+                ExplicitTop = 5
+                ExplicitWidth = 153
+                ExplicitHeight = 80
               end
             end
             object JvPanel6: TJvPanel
@@ -394,20 +387,17 @@ object MainForm: TMainForm
               HotTrackFont.Style = []
               Align = alClient
               BevelOuter = bvNone
-              Padding.Left = 2
-              Padding.Top = 2
-              Padding.Right = 2
-              Padding.Bottom = 2
+              Padding.Left = 1
+              Padding.Top = 1
+              Padding.Right = 1
+              Padding.Bottom = 1
               TabOrder = 1
-              ExplicitLeft = 160
-              ExplicitWidth = 163
-              ExplicitHeight = 121
               object Button2: TButton
                 AlignWithMargins = True
-                Left = 5
-                Top = 5
-                Width = 150
-                Height = 80
+                Left = 4
+                Top = 4
+                Width = 152
+                Height = 82
                 Action = ActionProcess
                 Align = alClient
                 Font.Charset = DEFAULT_CHARSET
@@ -419,10 +409,10 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 8
-                ExplicitTop = 27
-                ExplicitWidth = 85
-                ExplicitHeight = 63
+                ExplicitLeft = 5
+                ExplicitTop = 5
+                ExplicitWidth = 150
+                ExplicitHeight = 80
               end
             end
           end
@@ -439,8 +429,6 @@ object MainForm: TMainForm
             Align = alClient
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitTop = 121
-            ExplicitHeight = 57
             object JvPanel8: TJvPanel
               Left = 160
               Top = 0
@@ -453,20 +441,17 @@ object MainForm: TMainForm
               HotTrackFont.Style = []
               Align = alClient
               BevelOuter = bvNone
-              Padding.Left = 2
-              Padding.Top = 2
-              Padding.Right = 2
-              Padding.Bottom = 2
+              Padding.Left = 1
+              Padding.Top = 1
+              Padding.Right = 1
+              Padding.Bottom = 1
               TabOrder = 0
-              ExplicitLeft = 156
-              ExplicitWidth = 167
-              ExplicitHeight = 96
               object Button1: TButton
                 AlignWithMargins = True
-                Left = 5
-                Top = 5
-                Width = 153
-                Height = 80
+                Left = 4
+                Top = 4
+                Width = 155
+                Height = 82
                 Action = ActionExit
                 Align = alClient
                 Font.Charset = DEFAULT_CHARSET
@@ -478,10 +463,10 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 4
-                ExplicitTop = 35
-                ExplicitWidth = 83
-                ExplicitHeight = 44
+                ExplicitLeft = 5
+                ExplicitTop = 5
+                ExplicitWidth = 153
+                ExplicitHeight = 80
               end
             end
             object JvPanel9: TJvPanel
@@ -496,17 +481,16 @@ object MainForm: TMainForm
               HotTrackFont.Style = []
               Align = alLeft
               BevelOuter = bvNone
-              Padding.Left = 2
-              Padding.Top = 2
-              Padding.Right = 2
-              Padding.Bottom = 2
+              Padding.Left = 1
+              Padding.Top = 1
+              Padding.Right = 1
+              Padding.Bottom = 1
               TabOrder = 1
-              ExplicitHeight = 96
               object Button4: TButton
                 AlignWithMargins = True
-                Left = 5
-                Top = 5
-                Width = 150
+                Left = 4
+                Top = 4
+                Width = 152
                 Height = 38
                 Action = ActionSave
                 Align = alTop
@@ -519,16 +503,16 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 3
-                ExplicitTop = 3
-                ExplicitWidth = 154
+                ExplicitLeft = 5
+                ExplicitTop = 5
+                ExplicitWidth = 150
               end
               object Button6: TButton
                 AlignWithMargins = True
-                Left = 5
-                Top = 49
-                Width = 150
-                Height = 36
+                Left = 4
+                Top = 48
+                Width = 152
+                Height = 38
                 Action = ActionAbout
                 Align = alClient
                 Font.Charset = DEFAULT_CHARSET
@@ -540,10 +524,10 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 1
-                ExplicitLeft = 4
-                ExplicitTop = 57
-                ExplicitWidth = 102
-                ExplicitHeight = 44
+                ExplicitLeft = 5
+                ExplicitTop = 49
+                ExplicitWidth = 150
+                ExplicitHeight = 36
               end
             end
           end
@@ -569,7 +553,6 @@ object MainForm: TMainForm
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
-          ExplicitTop = 395
         end
         object JvCheckBoxFastOrigin: TJvCheckBox
           AlignWithMargins = True
@@ -592,7 +575,6 @@ object MainForm: TMainForm
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
-          ExplicitTop = 420
         end
       end
       object JvPanel2: TJvPanel
@@ -608,15 +590,12 @@ object MainForm: TMainForm
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 694
-        ExplicitHeight = 521
         object JvxSplitter1: TJvxSplitter
           Left = 347
           Top = 0
           Width = 3
           Height = 688
           Align = alLeft
-          ExplicitHeight = 521
         end
         object JvMemoIn: TJvMemo
           AlignWithMargins = True
@@ -639,7 +618,7 @@ object MainForm: TMainForm
           TabOrder = 1
           OnChange = JvMemoInChange
           OnMouseUp = JvMemoInMouseUp
-          ExplicitHeight = 515
+          ExplicitLeft = 6
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
@@ -661,8 +640,6 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 2
           OnMouseUp = JvMemoOutMouseUp
-          ExplicitWidth = 338
-          ExplicitHeight = 515
         end
       end
       object JvPanel3: TJvPanel
@@ -678,7 +655,6 @@ object MainForm: TMainForm
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 1017
         object JvLabel1: TJvLabel
           AlignWithMargins = True
           Left = 7
@@ -850,8 +826,6 @@ object MainForm: TMainForm
             Width = 100
             Control = JvProgressBar1
           end>
-        ExplicitTop = 562
-        ExplicitWidth = 1017
         object JvProgressBar1: TJvProgressBar
           Left = 463
           Top = 3
@@ -864,8 +838,6 @@ object MainForm: TMainForm
     object TabSheetGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 2
-      ExplicitWidth = 1017
-      ExplicitHeight = 584
       object Tcogeoview1: TTcogeoview
         Left = 0
         Top = 0
@@ -960,7 +932,6 @@ object MainForm: TMainForm
     Top = 112
   end
   object JvDragDrop1: TJvDragDrop
-    AllowDropElevation = True
     DropTarget = JvMemoIn
     OnDrop = JvDragDrop1Drop
     Left = 376
@@ -1032,7 +1003,7 @@ object MainForm: TMainForm
     Left = 516
     Top = 423
     Bitmap = {
-      494C010101003800380080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101003C003C0080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A
