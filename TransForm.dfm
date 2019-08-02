@@ -25,7 +25,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 992
     Height = 785
-    ActivePage = TabSheetTransform
+    ActivePage = TabSheetGeometry
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
@@ -822,7 +822,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 984
-        Height = 751
+        Height = 732
         Align = alClient
         TabOrder = 0
         ExplicitLeft = 64
@@ -830,6 +830,25 @@ object MainForm: TMainForm
         ExplicitWidth = 100
         ExplicitHeight = 50
         ControlData = {0A433A5C7777772E67656F00000000}
+      end
+      object JvStatusBar2: TJvStatusBar
+        Left = 0
+        Top = 732
+        Width = 984
+        Height = 19
+        Panels = <
+          item
+            Width = 500
+          end
+          item
+            Width = 150
+          end
+          item
+            Width = 150
+          end>
+        ExplicitLeft = 408
+        ExplicitTop = 584
+        ExplicitWidth = 0
       end
     end
   end

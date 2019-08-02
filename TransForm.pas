@@ -14,7 +14,7 @@ uses
   JvComCtrls, Vcl.TabNotBk, System.ImageList, Vcl.ImgList, JvImageList,
   Vcl.ButtonGroup, JvArrayButton, JvXPCore, JvXPButtons, Vcl.OleCtrls,
   TCOGEOVIEWLib_TLB, JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
-  Vcl.StdActns, System.TypInfo ;
+  Vcl.StdActns, System.TypInfo, System.UITypes ;
 
 type
   TMainForm = class(TForm)
@@ -85,6 +85,7 @@ type
     JvPanel6: TJvPanel;
     JvCheckBoxLookAHead: TJvCheckBox;
     JvCheckBoxFastOrigin: TJvCheckBox;
+    JvStatusBar2: TJvStatusBar;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -140,8 +141,8 @@ type
 
 var
   MainForm: TMainForm;
-     procedure ShowList(lst : TList<Integer>);                // Show any list items
-
+  procedure ShowList(lst : TList<Integer>);                // Show any list items
+  procedure SetStatusView;
 
 implementation
 
@@ -301,10 +302,20 @@ begin
   begin
     MainForm.TabSheetGeometry.Enabled := true;
     MainForm.Tcogeoview1.Filename := ViewFName;
+
+    SetStatusView;
   end;
 
   ActionProcess.Enabled := True;
   MainForm.Cursor := crDefault;
+end;
+
+procedure SetStatusView;
+begin
+  MainForm.JvStatusBar2.Panels[0].Text := 'File name: ' + MainForm.FNameIn;
+  MainForm.JvStatusBar2.Panels[1].Text := 'max X :' + MainForm.Tcogeoview1.getZeichnungMaxX.ToString;
+  MainForm.JvStatusBar2.Panels[2].Text := 'max Y :' + MainForm.Tcogeoview1.getZeichnungMaxY.ToString;
+
 end;
 
 procedure TMainForm.ActionAboutExecute(Sender: TObject);
@@ -462,7 +473,7 @@ begin
 
   StatusProgress(50);
 
-  //Change mwsured point mode
+  //Change mesured point mode
   for Q := 0 to MainForm.MesureList.Count - 1 do
   begin
      Str := JvMemoIn.Lines.Strings[MainForm.MesureList.Items[Q]];
@@ -780,24 +791,28 @@ begin
           (MainForm.Components[I] is TJvCheckBox) or
           (MainForm.Components[I] is TJvEdit) or
           (MainForm.Components[I] is TAction)) then
-        if Enabled then
         begin
-          TControl(Components[I]).Enabled := True;
 
-          ActionProcess.Enabled := True;
-          ActionSend.Enabled := True;
-          ActionSave.Enabled := True;
-          ActionExit.Enabled := True;
-          ActionAbout.Enabled := True;
-        end
-        else begin
-          TControl(Components[I]).Enabled := False;
 
-          ActionProcess.Enabled := False;
-          ActionSend.Enabled := False;
-          ActionSave.Enabled := False;
-          ActionExit.Enabled := False;
-          ActionAbout.Enabled := False;
+          if Enabled then
+          begin
+            TControl(Components[I]).Enabled := True;
+
+            ActionProcess.Enabled := True;
+            ActionSend.Enabled := True;
+            ActionSave.Enabled := True;
+            ActionExit.Enabled := True;
+            ActionAbout.Enabled := True;
+          end
+          else begin
+            TControl(Components[I]).Enabled := False;
+
+            ActionProcess.Enabled := False;
+            ActionSend.Enabled := False;
+            ActionSave.Enabled := False;
+            ActionExit.Enabled := False;
+            ActionAbout.Enabled := False;
+          end;
         end;
 
       Application.ProcessMessages;
@@ -806,56 +821,7 @@ begin
         MainForm.TabSheetTransform.Cursor := crDefault
       else
         MainForm.TabSheetTransform.Cursor := crHourGlass;
-
-
-
     end;
-
-
-
-
-
-
-  {  if Enabled then
-    begin
-      ActionProcess.Enabled := True;
-      ActionSend.Enabled := True;
-      ActionSave.Enabled := True;
-      ActionExit.Enabled := True;
-      ActionAbout.Enabled := True;
-      JvEditProgName.Enabled := True;
-      JvEditTechTable.Enabled := True;
-      JvEditProgNumber.Enabled := True;
-      JvRadioGroupSelectTable.Enabled := True;
-      JvRadioGroupCircleMesure.Enabled := True;
-      JvRadioGroupSelectPiercing.Enabled := True;
-      JvCheckBoxInnerHoles.Enabled := True;
-      JvCheckBoxSensorUp.Enabled := True;
-      JvCheckBoxSlashCall.Enabled := True;
-      JvCheckBoxDelNumberStr.Enabled := True;
-      JvCheckBoxDeleteNewTable.Enabled := True;
-      JvCheckBoxSaveChangedFile.Enabled := True;
-    end
-    else
-    begin
-      ActionProcess.Enabled := False;
-      ActionSend.Enabled := False;
-      ActionSave.Enabled := False;
-      ActionExit.Enabled := False;
-      ActionAbout.Enabled := False;
-      JvEditProgName.Enabled := False;
-      JvEditTechTable.Enabled := False;
-      JvEditProgNumber.Enabled := False;
-      JvRadioGroupSelectTable.Enabled := False;
-      JvRadioGroupCircleMesure.Enabled := False;
-      JvRadioGroupSelectPiercing.Enabled := False;
-      JvCheckBoxInnerHoles.Enabled := False;
-      JvCheckBoxSensorUp.Enabled := False;
-      JvCheckBoxSlashCall.Enabled := False;
-      JvCheckBoxDelNumberStr.Enabled := False;
-      JvCheckBoxDeleteNewTable.Enabled := False;
-      JvCheckBoxSaveChangedFile.Enabled := False;
-    end;   }
 end;
 
 function TMainForm.ChangeName(OldNumber, NewNumber: string): string;
@@ -863,7 +829,7 @@ var
   CallNumber: string;
   Number: string;
   NewN: string;
-  
+
   Reg: TRegExpr;
 begin
   Reg := TRegExpr.Create;
@@ -890,6 +856,8 @@ begin
   PircingList := TList<Integer>.Create;
   AllPircingList := TList<Integer>.Create;
   MesureList :=TList<Integer>.Create;
+
+
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -910,6 +878,8 @@ begin
   JvStatusBar1.Panels.Items[1].Width := (JvMemoIn.Width - JvStatusBar1.Panels.Items[0].Width);
 
   JvStatusBar1.Panels.Items[3].Width := JvMemoOut.Width- JvStatusBar1.Panels[2].Width + 20;
+
+  JvStatusBar2.Panels.Items[0].Width := (MainForm.Width - (JvStatusBar2.Panels.Items[1].Width + JvStatusBar2.Panels.Items[2].Width))
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -944,6 +914,7 @@ procedure TMainForm.JvDragDrop3Drop(Sender: TObject; Pos: TPoint;
   Value: TStrings);
 begin
   MainForm.Tcogeoview1.Filename := Value[0];
+  SetStatusView;
 end;
 
 procedure TMainForm.JvMemoInChange(Sender: TObject);
