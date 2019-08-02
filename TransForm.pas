@@ -774,15 +774,41 @@ begin
 
     for I := 0 to MainForm.ComponentCount -1 do
     begin
-      if ((MainForm.Components[I] is TButton) or (MainForm.Components[I] is TJvPanel) or (MainForm.Components[I] is TJvRadioGroup) or (MainForm.Components[I] is TJvCheckBox) or (MainForm.Components[I] is TJvEdit)) then
-        if Enabled then TControl(Components[I]).Enabled := True
-        else TControl(Components[I]).Enabled := False;
+      if ((MainForm.Components[I] is TButton) or
+          (MainForm.Components[I] is TJvPanel) or
+          (MainForm.Components[I] is TJvRadioGroup) or
+          (MainForm.Components[I] is TJvCheckBox) or
+          (MainForm.Components[I] is TJvEdit) or
+          (MainForm.Components[I] is TAction)) then
+        if Enabled then
+        begin
+          TControl(Components[I]).Enabled := True;
+
+          ActionProcess.Enabled := True;
+          ActionSend.Enabled := True;
+          ActionSave.Enabled := True;
+          ActionExit.Enabled := True;
+          ActionAbout.Enabled := True;
+        end
+        else begin
+          TControl(Components[I]).Enabled := False;
+
+          ActionProcess.Enabled := False;
+          ActionSend.Enabled := False;
+          ActionSave.Enabled := False;
+          ActionExit.Enabled := False;
+          ActionAbout.Enabled := False;
+        end;
+
       Application.ProcessMessages;
 
       if Enabled then
         MainForm.TabSheetTransform.Cursor := crDefault
       else
         MainForm.TabSheetTransform.Cursor := crHourGlass;
+
+
+
     end;
 
 

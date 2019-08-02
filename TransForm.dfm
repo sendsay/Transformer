@@ -369,10 +369,6 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 5
-                ExplicitTop = 5
-                ExplicitWidth = 153
-                ExplicitHeight = 80
               end
             end
             object JvPanel6: TJvPanel
@@ -409,10 +405,6 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 5
-                ExplicitTop = 5
-                ExplicitWidth = 150
-                ExplicitHeight = 80
               end
             end
           end
@@ -463,10 +455,6 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 5
-                ExplicitTop = 5
-                ExplicitWidth = 153
-                ExplicitHeight = 80
               end
             end
             object JvPanel9: TJvPanel
@@ -503,9 +491,6 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                ExplicitLeft = 5
-                ExplicitTop = 5
-                ExplicitWidth = 150
               end
               object Button6: TButton
                 AlignWithMargins = True
@@ -524,10 +509,6 @@ object MainForm: TMainForm
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 1
-                ExplicitLeft = 5
-                ExplicitTop = 49
-                ExplicitWidth = 150
-                ExplicitHeight = 36
               end
             end
           end
@@ -618,7 +599,6 @@ object MainForm: TMainForm
           TabOrder = 1
           OnChange = JvMemoInChange
           OnMouseUp = JvMemoInMouseUp
-          ExplicitLeft = 6
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
@@ -1003,7 +983,7 @@ object MainForm: TMainForm
     Left = 516
     Top = 423
     Bitmap = {
-      494C010101003C003C0080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101004000400080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A
