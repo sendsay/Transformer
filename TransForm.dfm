@@ -2,10 +2,10 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Transformer'
-  ClientHeight = 785
+  ClientHeight = 693
   ClientWidth = 992
   Color = clBtnFace
-  Constraints.MinHeight = 645
+  Constraints.MinHeight = 700
   Constraints.MinWidth = 930
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -24,8 +24,8 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 992
-    Height = 785
-    ActivePage = TabSheetGeometry
+    Height = 693
+    ActivePage = TabSheetTransform
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
@@ -45,7 +45,7 @@ object MainForm: TMainForm
         Left = 661
         Top = 41
         Width = 323
-        Height = 688
+        Height = 596
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
         HotTrackFont.Height = -11
@@ -311,7 +311,7 @@ object MainForm: TMainForm
         end
         object JvPanel5: TJvPanel
           Left = 0
-          Top = 508
+          Top = 416
           Width = 323
           Height = 180
           HotTrackFont.Charset = DEFAULT_CHARSET
@@ -553,6 +553,7 @@ object MainForm: TMainForm
           Font.Style = []
           ParentFont = False
           TabOrder = 9
+          Visible = False
           WordWrap = True
           LinkedControls = <>
           AutoSize = False
@@ -562,7 +563,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 41
         Width = 661
-        Height = 688
+        Height = 596
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
         HotTrackFont.Height = -11
@@ -575,7 +576,7 @@ object MainForm: TMainForm
           Left = 347
           Top = 0
           Width = 3
-          Height = 688
+          Height = 596
           Align = alLeft
         end
         object JvMemoIn: TJvMemo
@@ -583,7 +584,7 @@ object MainForm: TMainForm
           Left = 3
           Top = 3
           Width = 341
-          Height = 682
+          Height = 590
           Align = alLeft
           Constraints.MinWidth = 200
           Font.Charset = DEFAULT_CHARSET
@@ -598,14 +599,13 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 1
           OnChange = JvMemoInChange
-          OnMouseUp = JvMemoInMouseUp
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
           Left = 353
           Top = 3
           Width = 305
-          Height = 682
+          Height = 590
           Align = alClient
           Constraints.MinWidth = 200
           Font.Charset = DEFAULT_CHARSET
@@ -619,7 +619,6 @@ object MainForm: TMainForm
           ScrollBars = ssBoth
           ShowHint = True
           TabOrder = 2
-          OnMouseUp = JvMemoOutMouseUp
         end
       end
       object JvPanel3: TJvPanel
@@ -783,7 +782,7 @@ object MainForm: TMainForm
       end
       object JvStatusBar1: TJvStatusBar
         Left = 0
-        Top = 729
+        Top = 637
         Width = 984
         Height = 22
         Panels = <
@@ -818,11 +817,15 @@ object MainForm: TMainForm
     object TabSheetGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Tcogeoview1: TTcogeoview
         Left = 0
         Top = 0
         Width = 984
-        Height = 732
+        Height = 640
         Align = alClient
         TabOrder = 0
         ExplicitLeft = 64
@@ -833,7 +836,7 @@ object MainForm: TMainForm
       end
       object JvStatusBar2: TJvStatusBar
         Left = 0
-        Top = 732
+        Top = 640
         Width = 984
         Height = 19
         Panels = <
@@ -846,9 +849,6 @@ object MainForm: TMainForm
           item
             Width = 150
           end>
-        ExplicitLeft = 408
-        ExplicitTop = 584
-        ExplicitWidth = 0
       end
     end
   end
@@ -891,13 +891,11 @@ object MainForm: TMainForm
       Category = 'Text'
       Caption = 'Find'
       ShortCut = 16454
-      OnExecute = ActionFindExecute
     end
     object ActionReplace: TAction
       Category = 'Text'
       Caption = 'Replace'
       ShortCut = 16456
-      OnExecute = ActionReplaceExecute
     end
     object ActionJump: TAction
       Category = 'Text'
@@ -1002,7 +1000,7 @@ object MainForm: TMainForm
     Left = 516
     Top = 423
     Bitmap = {
-      494C010101004000400080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101004800480080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A

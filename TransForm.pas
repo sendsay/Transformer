@@ -101,12 +101,6 @@ type
     procedure JvDragDrop2Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
     procedure JvProgressComponent1Close(Sender: TObject);
     procedure JvDragDrop3Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
-    procedure JvMemoInMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure JvMemoOutMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure ActionReplaceExecute(Sender: TObject);
-    procedure ActionFindExecute(Sender: TObject);
     procedure JvRadioGroupSelectPiercingClick(Sender: TObject);
     procedure ActionJumpExecute(Sender: TObject);
   private
@@ -124,10 +118,11 @@ type
     PircingList : TList<Integer>;                   //Pircing pos list
     AllPircingList : TList<Integer>;                //All pircing pos list
     MesureList : TList<Integer>;                    //Mesured point list
-    FNameIn : string;
-    FNameOut: string;
+    CommentsList : TList<Integer>;                  //Comments list
+    FNameIn : string;                               //Name in file
+    FNameOut: string;                               //Name out file
 
-    CurrMemo : byte;                                //Current memo click
+ //   CurrMemo : byte;                                //Current memo click
  //   ComPortError: Boolean;
 
     procedure FileDroped(FileName : string);          //Load file to memo and tune up buttons
@@ -143,6 +138,8 @@ var
   MainForm: TMainForm;
   procedure ShowList(lst : TList<Integer>);                // Show any list items
   procedure SetStatusView;
+
+
 
 implementation
 
@@ -182,6 +179,7 @@ begin
   MainForm.PircingList.Clear;
   MainForm.AllPircingList.Clear;
   MainForm.MesureList.Clear;
+  MainForm.CommentsList.Clear;
 
   Reg := TRegExpr.Create;
 
@@ -192,6 +190,10 @@ begin
 
       with Reg do
       begin
+        Expression := '.UPEND';           //Gets comments pos
+        if Exec(Str) then
+          MainForm.CommentsList.Add(I);
+
         Expression := 'N\d+G934\[\d+\]';  //Gets height sensor pos
         if Exec(Str) then
            MainForm.WithOutHSenList.Add(I);
@@ -328,14 +330,6 @@ begin
   Close;
 end;
 
-procedure TMainForm.ActionFindExecute(Sender: TObject);
-begin
-  case CurrMemo of
-    1 : MainForm.JvFindReplace1.Find;
-    2 : MainForm.JvFindReplace2.Find;
-  end;
-end;
-
 procedure TMainForm.ActionJumpExecute(Sender: TObject);
 begin
 
@@ -364,14 +358,14 @@ var
   FIleSize: Int64;
   MaxFileLength: Integer;
   Q: Integer;
+  JJ: Integer;
+  SU : Integer;
 begin
   ButtonEnabled(False);
   Application.ProcessMessages;
   StatusProgress(5);
 
   MainForm.Cursor := crHourGlass;
-
-
 
   Reg := TRegExpr.Create;
   DelNewTable := False;
@@ -390,8 +384,10 @@ begin
   for J:= 0 to JvMemoIn.Lines.Count - 1 do
   begin
 
-  //delete number string
+    // Get string from source
     Str := JvMemoIn.Lines.Strings[J];
+
+    //delete number string
     if JvCheckBoxDelNumberStr.Checked then
     begin
       Reg.Expression := 'N\d+';
@@ -411,6 +407,9 @@ begin
     if not DelNewTable then
       JvMemoOut.Lines.Add(Str);
   end;
+
+
+
 
   StatusProgress(25);
 
@@ -484,7 +483,7 @@ begin
      Application.ProcessMessages;
   end;
 
-  StatusProgress(70);
+  StatusProgress(60);
 
   //Change program number
   for P := 0 to CallSubprogramList.Count - 1 do
@@ -632,12 +631,22 @@ begin
       MainForm.JvMemoOut.Lines.Delete(MainForm.JvMemoOut.Lines.Count - 1);
     end;
 
-  StatusProgress(100);
+  StatusProgress(80);
 
   if OnePircingContour then
     ShowMessage('Contours with one pircing are detected, check the results!');
 
+
+  for JJ := 0 to MainForm.CommentsList.Count - 1 do
+  begin
+    MainForm.JvMemoOut.Lines.Delete(MainForm.CommentsList.Items[JJ] - JJ)
+  end;
+
+  StatusProgress(100);
+
   JvMemoOut.Lines.EndUpdate;
+
+
   FreeAndNil(Reg);
   OnePircingContour := False;
 
@@ -660,14 +669,6 @@ begin
 
 
   MainForm.Cursor := crDefault;
-end;
-
-procedure TMainForm.ActionReplaceExecute(Sender: TObject);
-begin
-  case CurrMemo of
-    1 : MainForm.JvFindReplace1.Replace;
-    2 : MainForm.JvFindReplace2.Replace;
-  end;
 end;
 
 procedure TMainForm.ActionSaveExecute(Sender: TObject);
@@ -849,6 +850,10 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+
+
+
+
   WithOutHSenList := TList<Integer>.Create;
   CallSubprogramList := TList<Integer>.Create;
   TechTableList  := TList<Integer>.Create;
@@ -856,6 +861,7 @@ begin
   PircingList := TList<Integer>.Create;
   AllPircingList := TList<Integer>.Create;
   MesureList :=TList<Integer>.Create;
+  CommentsList := TList<Integer>.Create;
 
 
 end;
@@ -869,6 +875,7 @@ begin
   FreeAndNil(PircingList);
   FreeAndNil(AllPircingList);
   FreeAndNil(MesureList);
+  FreeAndNil(CommentsList);
 end;
 
 procedure TMainForm.FormResize(Sender: TObject);
@@ -920,18 +927,6 @@ end;
 procedure TMainForm.JvMemoInChange(Sender: TObject);
 begin
   MainForm.GetDataFromFile;        //Collect data from file
-end;
-
-procedure TMainForm.JvMemoInMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  CurrMemo := 1;  //Change current memo
-end;
-
-procedure TMainForm.JvMemoOutMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  CurrMemo := 2;  //Change current memo
 end;
 
 procedure TMainForm.JvProgressComponent1Close(Sender: TObject);

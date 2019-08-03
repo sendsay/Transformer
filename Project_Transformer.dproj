@@ -89,11 +89,11 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=Shpakov Vladyslav;FileDescription=Transform Gcode file ;FileVersion=2.1.1.10;InternalName=Transformer;LegalCopyright=Shpakov Vlad.;LegalTrademarks=Shpakov Vlad.;OriginalFilename=Project_Transformer.exe;ProgramID=com.yahoo.sendsay.Transformer;ProductName=Transformer;ProductVersion=2.1;Comments=Using This !!! :)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Shpakov Vladyslav;FileDescription=Transform Gcode file ;FileVersion=2.1.1.14;InternalName=Transformer;LegalCopyright=Shpakov Vlad.;LegalTrademarks=Shpakov Vlad.;OriginalFilename=Project_Transformer.exe;ProgramID=com.yahoo.sendsay.Transformer;ProductName=Transformer;ProductVersion=2.1;Comments=Using This !!! :)</VerInfo_Keys>
         <Icon_MainIcon>Logo.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>D:\Projects\Transformer\Logo.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>D:\Projects\Transformer\Logo.png</UWP_DelphiLogo150>
-        <VerInfo_Build>10</VerInfo_Build>
+        <VerInfo_Build>14</VerInfo_Build>
         <DCC_RangeChecking>true</DCC_RangeChecking>
         <Debugger_RunParams>C:\cut_1.LST</Debugger_RunParams>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
@@ -159,6 +159,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Debug\Project_Transformer.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Project_Transformer.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Logo.png" Configuration="Release" Class="UWP_DelphiLogo150">
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
@@ -170,12 +176,6 @@
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo150x150.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win32\Debug\Project_Transformer.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>Project_Transformer.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
