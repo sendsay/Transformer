@@ -28,20 +28,11 @@ Coordinates=409,270,77,36
 [Tcogeoview1]
 Coordinates=283,328,90,36
 
-[JvDragDrop1]
-Coordinates=211,270,90,36
-
 [JvCheckBoxSensorUp]
 Coordinates=239,146,142,58
 
-[JvLabel3]
-Coordinates=207,328,66,36
-
 [JvDragDrop2]
 Coordinates=43,270,90,36
-
-[JvLabel1]
-Coordinates=131,328,66,36
 
 [ActionAbout]
 Coordinates=911,1,84,36
@@ -79,9 +70,6 @@ Coordinates=87,214,140,58
 [JvPanel1]
 Coordinates=237,214,67,58
 
-[JvAppIniFileStorage1]
-Coordinates=911,276,137,36
-
 [JvProgressBar1]
 Coordinates=269,10,106,58
 
@@ -90,9 +78,6 @@ Coordinates=493,282,110,36
 
 [ActionSave]
 Coordinates=822,344,79,36
-
-[JvLabel2]
-Coordinates=417,282,66,36
 
 [Button4]
 Coordinates=170,146,59,58
@@ -121,9 +106,6 @@ Coordinates=10,10,180,58
 [JvCheckBoxSaveChangedFile]
 Coordinates=432,78,188,58
 
-[JvFormStorage1]
-Coordinates=1087,56,109,36
-
 [JvPanel2]
 Coordinates=10,78,67,58
 
@@ -134,9 +116,6 @@ Visible=True
 [JvMemoOut]
 Coordinates=383,214,83,36
 
-[JvDragDrop3]
-Coordinates=1087,331,90,36
-
 []
-Coordinates=1087,221,107,36
+Coordinates=211,270,90,36
 

@@ -13,9 +13,10 @@ uses
   JvSplit, JvProgressBar, BCPort, Vcl.Tabs, Vcl.DockTabSet, JvTabBar, JvPageList,
   JvComCtrls, Vcl.TabNotBk, System.ImageList, Vcl.ImgList, JvImageList,
   Vcl.ButtonGroup, JvArrayButton, JvXPCore, JvXPButtons, Vcl.OleCtrls,
-  TCOGEOVIEWLib_TLB, JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
-  Vcl.StdActns, System.TypInfo, System.UITypes ;
-
+  {TCOGEOVIEWLib_TLB,} JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
+  Vcl.StdActns, System.TypInfo, System.UITypes, JvCommStatus, JvCombobox,
+  JvListBox, Vcl.Mask, JvExMask, JvToolEdit, JvGroupHeader, JvGroupBox, Vcl.Themes,
+  JvBaseDlg, JvBrowseFolder;
 type
   TMainForm = class(TForm)
     JvPanel1: TJvPanel;
@@ -38,21 +39,14 @@ type
     JvCheckBoxDeleteNewTable: TJvCheckBox;
     JvCheckBoxSlashCall: TJvCheckBox;
     JvCheckBoxInnerHoles: TJvCheckBox;
-    JvLabel1: TJvLabel;
     JvEditProgNumber: TJvEdit;
-    JvLabel2: TJvLabel;
     JvEditProgName: TJvEdit;
-    JvLabel3: TJvLabel;
     JvEditTechTable: TJvEdit;
-    JvAppIniFileStorage1: TJvAppIniFileStorage;
-    JvFormStorage1: TJvFormStorage;
-    JvDragDrop1: TJvDragDrop;
     JvDragDrop2: TJvDragDrop;
     JvSaveDialog1: TJvSaveDialog;
     JvCheckBoxSaveChangedFile: TJvCheckBox;
     JvxSplitter1: TJvxSplitter;
     JvProgressBar1: TJvProgressBar;
-    BComPort1: TBComPort;
     JvProgressComponent1: TJvProgressComponent;
     JvCheckBoxDelNumberStr: TJvCheckBox;
     JvPageControl1: TJvPageControl;
@@ -60,23 +54,14 @@ type
     JvTabDefaultPainter1: TJvTabDefaultPainter;
     ImageList1: TImageList;
     TabSheetGeometry: TTabSheet;
-    Tcogeoview1: TTcogeoview;
-    JvDragDrop3: TJvDragDrop;
     JvMemoIn: TJvMemo;
     JvMemoOut: TJvMemo;
-    JvPopupMenu1: TJvPopupMenu;
-    Find: TMenuItem;
-    Replace1: TMenuItem;
-    ActionFind: TAction;
-    ActionReplace: TAction;
-    JvFindReplace1: TJvFindReplace;
-    JvFindReplace2: TJvFindReplace;
+    JvFindReplace_InMemo: TJvFindReplace;
+    JvFindReplace_OutMemo: TJvFindReplace;
     JvRadioGroupSelectPiercing: TJvRadioGroup;
     JvPanel4: TJvPanel;
     JvRadioGroupCircleMesure: TJvRadioGroup;
     JvPanel5: TJvPanel;
-    Jump1: TMenuItem;
-    ActionJump: TAction;
     JvPanel8: TJvPanel;
     JvPanel9: TJvPanel;
     JvPanel10: TJvPanel;
@@ -84,14 +69,56 @@ type
     JvPanel7: TJvPanel;
     JvPanel6: TJvPanel;
     JvCheckBoxLookAHead: TJvCheckBox;
-    JvCheckBoxFastOrigin: TJvCheckBox;
     JvStatusBar2: TJvStatusBar;
+    BComPort1: TBComPort;
+    Label1: TLabel;
+    JvComboBox_COMPort: TJvComboBox;
+    Label2: TLabel;
+    JvComboBox_Baudrate: TJvComboBox;
+    JvComboBox_ByteSize: TJvComboBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    JvComboBox_StopBits: TJvComboBox;
+    Label5: TLabel;
+    JvComboBox_Parity: TJvComboBox;
+    Label6: TLabel;
+    JvEdit_BuffSize: TJvEdit;
+    JvFormStorage1: TJvFormStorage;
+    JvAppIniFileStorage1: TJvAppIniFileStorage;
+    JvGroupBox1: TJvGroupBox;
+    Button3: TButton;
+    ActionApply: TAction;
+    SearchFind1: TSearchFind;
+    JvGroupBox2: TJvGroupBox;
+    JvComboBox_StyleSelector: TJvComboBox;
+    Button7: TButton;
+    ActionSaveTheme: TAction;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    JvDragDrop1: TJvDragDrop;
+    JvPopupMenu2: TJvPopupMenu;
+    MenuItem1: TMenuItem;
+    JvPopupMenu1: TJvPopupMenu;
+    MenuItem2: TMenuItem;
+    ActionFind_In: TAction;
+    ActionFind_Out: TAction;
+    JvCheckBox_SlashPiercing: TJvCheckBox;
+    JvPanel12: TJvPanel;
+    Button8: TButton;
+    ActionView: TAction;
+    JvGroupBox3: TJvGroupBox;
+    Label10: TLabel;
+    JvBrowseForFolderDialog1: TJvBrowseForFolderDialog;
+    JvEdit_GeoViewPath: TJvEdit;
+    Button9: TButton;
+    ActionBrowseGeoView: TAction;
+    JvCheckBox_ShowMax: TJvCheckBox;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure JvMemoInChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ActionProcessExecute(Sender: TObject);
     procedure ActionSendExecute(Sender: TObject);
@@ -102,11 +129,23 @@ type
     procedure JvProgressComponent1Close(Sender: TObject);
     procedure JvDragDrop3Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
     procedure JvRadioGroupSelectPiercingClick(Sender: TObject);
-    procedure ActionJumpExecute(Sender: TObject);
+    procedure BComPort1Error(Sender: TObject; Errors: TComErrors);
+    procedure ActionApplyExecute(Sender: TObject);
+    procedure JvComboBox_StyleSelectorChange(Sender: TObject);
+    procedure ActionSaveThemeExecute(Sender: TObject);
+    procedure JvComboBox_StyleSelectorSelect(Sender: TObject);
+    procedure ActionFind_InExecute(Sender: TObject);
+    procedure ActionFind_OutExecute(Sender: TObject);
+    procedure ActionBrowseGeoViewExecute(Sender: TObject);
+    procedure JvBrowseForFolderDialog1Change(Sender: TObject;
+      const Directory: string);
+    procedure ActionViewExecute(Sender: TObject);
+
+
   private
     { Private declarations }
-    FBreak: Boolean;
-    FEmpty: Boolean;
+    FBreak: Boolean;                                // Transmiting canceled
+    FEmpty: Boolean;                                // Trasmiting buffer is EMPTY!
   public
     { Public declarations }
     WithOutHSenList : TList<Integer>;               //List of pos height sensor
@@ -122,8 +161,14 @@ type
     FNameIn : string;                               //Name in file
     FNameOut: string;                               //Name out file
 
- //   CurrMemo : byte;                                //Current memo click
- //   ComPortError: Boolean;
+    Port : string;                                  // ComPort name
+    BaudRate : Integer;                             // BaudRate
+    ByteSize : Integer;                             // ByteSize
+    OutBufSize : Integer;                           // OutBufSize
+    Parity : Integer;                               // Parity
+    StopBits : Integer;                             // StopBits
+
+    LoadStyle : string;                             // Style name
 
     procedure FileDroped(FileName : string);          //Load file to memo and tune up buttons
     procedure GetDataFromFile;                        //Get all data about file
@@ -131,15 +176,16 @@ type
     function ChangeName(OldNumber, NewNumber : string): string;  //Change number of program
     procedure SetStatus(Panel: Integer; Text: string);    //Sets status string
     procedure ButtonEnabled(Enabled : boolean);     //Switch on/off buttons
-
+    procedure LoadParams;
   end;
 
 var
   MainForm: TMainForm;
+
   procedure ShowList(lst : TList<Integer>);                // Show any list items
   procedure SetStatusView;
-
-
+  function ExecuteProcess(const FileName, Params: string; Folder: string; WaitUntilTerminated, WaitUntilIdle, RunMinimized: boolean;
+                          var ErrorCode: integer): boolean;
 
 implementation
 
@@ -234,6 +280,9 @@ begin
             MainForm.JvEditProgNumber.Text := S;
           end;
           MainForm.iProgramNamePos := I;
+
+//          MainForm.ProgramNumberList.Add(I);
+//          SearchPircing := True;
         end;
 
         Expression := 'N\d+Q\d*';         //Gets call subprogram
@@ -284,11 +333,16 @@ begin
     SetStatus(0, Format('Lines: %d', [JvMemoIn.Lines.Count]));
     SetStatus(1, Format('File: %s', [FNameIn]));
   end;
+
+
+//   ShowList(MainForm.iProgramNamePos);  /
+
 end;
 
 procedure TMainForm.FileDroped(FileName : string);
 var
   ViewFName : string;
+  newFileName : string;
 begin
   MainForm.Cursor := crHourGlass;
   MainForm.JvMemoIn.Clear;
@@ -298,26 +352,35 @@ begin
   SetStatus(0, Format('Lines: %d', [JvMemoIn.Lines.Count]));
   SetStatus(1, Format('File: %s', [FNameIn]));
 
-  ViewFName := ChangeFileExt(FNameIn, '.tmt');
-
-  if FileExists(ViewFName) then
-  begin
-    MainForm.TabSheetGeometry.Enabled := true;
-    MainForm.Tcogeoview1.Filename := ViewFName;
-
-    SetStatusView;
-  end;
-
   ActionProcess.Enabled := True;
+  ActionFind_In.Enabled := True;
+
+  newFileName := ChangeFileExt(FileName, '.tmt');
+
+  if (FileExists(newFileName)) then
+    ActionView.Enabled := True
+  else
+    ActionView.Enabled := False;
+
   MainForm.Cursor := crDefault;
 end;
 
 procedure SetStatusView;
 begin
   MainForm.JvStatusBar2.Panels[0].Text := 'File name: ' + MainForm.FNameIn;
-  MainForm.JvStatusBar2.Panels[1].Text := 'max X :' + MainForm.Tcogeoview1.getZeichnungMaxX.ToString;
-  MainForm.JvStatusBar2.Panels[2].Text := 'max Y :' + MainForm.Tcogeoview1.getZeichnungMaxY.ToString;
+//  MainForm.JvStatusBar2.Panels[1].Text := 'max X :' + MainForm.Tcogeoview1.getZeichnungMaxX.ToString;
+//  MainForm.JvStatusBar2.Panels[2].Text := 'max Y :' + MainForm.Tcogeoview1.getZeichnungMaxY.ToString;
 
+end;
+
+procedure TMainForm.ActionFind_InExecute(Sender: TObject);
+begin
+  JvFindReplace_InMemo.Replace;
+end;
+
+procedure TMainForm.ActionFind_OutExecute(Sender: TObject);
+begin
+  JvFindReplace_OutMemo.Replace;
 end;
 
 procedure TMainForm.ActionAboutExecute(Sender: TObject);
@@ -325,15 +388,32 @@ begin
   AboutForm.ShowModal;
 end;
 
+procedure TMainForm.ActionApplyExecute(Sender: TObject);
+begin
+  if MessageDlg('Are you sure?', mtConfirmation, mbYesNo, 0) = mrNo then Exit;
+
+  try
+    JvAppIniFileStorage1.WriteString('COMPort\Port', JvComboBox_COMPort.Text);
+    JvAppIniFileStorage1.WriteInteger('COMPort\ByteSize', JvComboBox_ByteSize.ItemIndex);
+    JvAppIniFileStorage1.WriteInteger('COMPort\BaudRate', JvComboBox_BaudRate.ItemIndex);
+    JvAppIniFileStorage1.WriteInteger('COMPort\StopBits', JvComboBox_StopBits.ItemIndex);
+    JvAppIniFileStorage1.WriteInteger('COMPort\Parity', JvComboBox_Parity.ItemIndex);
+    JvAppIniFileStorage1.WriteInteger('COMPort\OutBufSize', StrToInt(JvEdit_BuffSize.Text));
+  except on E: Exception do
+    ShowMessage(E.ToString());
+  end;
+
+  LoadParams;    // refresh params
+end;
+
+procedure TMainForm.ActionBrowseGeoViewExecute(Sender: TObject);
+begin
+  JvBrowseForFolderDialog1.Execute();
+end;
+
 procedure TMainForm.ActionExitExecute(Sender: TObject);
 begin
   Close;
-end;
-
-procedure TMainForm.ActionJumpExecute(Sender: TObject);
-begin
-
-  MainForm.JvMemoIn.Perform(EM_LINESCROLL,0,100) ;
 end;
 
 procedure TMainForm.ActionProcessExecute(Sender: TObject);
@@ -408,9 +488,6 @@ begin
       JvMemoOut.Lines.Add(Str);
   end;
 
-
-
-
   StatusProgress(25);
 
   //Change coord table
@@ -464,7 +541,7 @@ begin
     else
       Str := Str + (MainForm.JvRadioGroupSelectPiercing.ItemIndex + 2 ).ToString +']';
 
-    if JvCheckBoxSlashCall.Checked then Str := '/' + Str;
+    if JvCheckBox_SlashPiercing.Checked then Str := '/' + Str;
 
     JvMemoOut.Lines.Strings[MainForm.AllPircingList.Items[R]] := Str;
     Application.ProcessMessages;
@@ -636,11 +713,10 @@ begin
   if OnePircingContour then
     ShowMessage('Contours with one pircing are detected, check the results!');
 
-
-  for JJ := 0 to MainForm.CommentsList.Count - 1 do
-  begin
-    MainForm.JvMemoOut.Lines.Delete(MainForm.CommentsList.Items[JJ] - JJ)
-  end;
+//  for JJ := 0 to MainForm.CommentsList.Count - 1 do
+//  begin
+//    MainForm.JvMemoOut.Lines.Delete(MainForm.CommentsList.Items[JJ] - JJ)
+//  end;
 
   StatusProgress(100);
 
@@ -661,7 +737,7 @@ begin
   SetStatus(4, Format('Bytes: %d', [Length(JvMemoOut.Text)]));
 
 
-  if ((CallSubprogramList.Count - 1) > 99) then
+  if ((ProgramNumberList.Count - 1) > 99) then
     ShowMessage('WARNING!!! Count of subprogram more than 99! ');
 
   if (Length(JvMemoOut.Text) > MaxFileLength) then
@@ -678,12 +754,21 @@ begin
     MainForm.JvMemoOut.Lines.SaveToFile(JvSaveDialog1.FileName);
 end;
 
+procedure TMainForm.ActionSaveThemeExecute(Sender: TObject);
+begin
+  if MessageDlg('Are you sure?', mtConfirmation, mbYesNo, 0) = mrNo then Exit;
+
+  JvAppIniFileStorage1.WriteString('MainForm\Theme', JvComboBox_StyleSelector.Text);
+
+end;
+
 procedure TMainForm.ActionSendExecute(Sender: TObject);
 var
   Buf: String;
   N, PackSize, PackCount: Integer;
   F : TMemoryStream;
   MaxFileLength : integer;
+  I : Integer;
 begin
   if MessageDlg('Are you ready?', mtConfirmation, mbYesNo, 0) = mrNo then
     Exit;
@@ -693,14 +778,20 @@ begin
     JvProgressComponent1.ProgressPosition := 0;
     JvProgressComponent1.InfoLabel := 'Sending file : ' + FNameOut;
 
-    BComPort1.Port :=  JvAppIniFileStorage1.ReadString('COMPort\Port');
-    BComPort1.BaudRate := TBaudRate(JvAppIniFileStorage1.ReadInteger('COMPort\BaudRate'));
-    BComPort1.ByteSize := TByteSize(JvAppIniFileStorage1.ReadInteger('COMPort\ByteSize'));
-    BComPort1.OutBufSize := JvAppIniFileStorage1.ReadInteger('COMPort\OutBufSize');
-    BComPort1.Parity := TParity(JvAppIniFileStorage1.ReadInteger('COMPort\Parity'));
-    BComPort1.StopBits := TStopBits(JvAppIniFileStorage1.ReadInteger('COMPort\StopBits'));
+    BComPort1.Port := Port;
+    BComPort1.BaudRate := TBaudRate(BaudRate);
+    BComPort1.ByteSize := TByteSize(ByteSize);
+    BComPort1.StopBits := TStopBits(StopBits);
+    BComPort1.Parity := TParity(Parity);
+    BComPort1.OutBufSize := OutBufSize;
 
     if not BComPort1.Open then Exit;  // Открываем порт
+
+    I := BComPort1.OutBufCount;
+
+    BComPort1.ClearBuffer(True, True);
+
+    I := BComPort1.OutBufCount;
 
     JvProgressComponent1.Execute;
 
@@ -720,7 +811,7 @@ begin
 
     JvProgressComponent1.ProgressMax := PackCount;
 
-    N := 0; FEmpty := False;
+    N := 0; FEmpty := True;
     // Передаем имя файла и его размер
    BComPort1.WriteStr('transmit.tmp' + ':' + IntToStr(F.Size));
 
@@ -748,7 +839,7 @@ begin
 
       SetLength(Buf, PackSize);
       F.Read(Buf[1], PackSize);
-      FEmpty := False;
+      FEmpty := True;
       BComPort1.WriteStr(Buf);
       Inc(N);
       JvProgressComponent1.ProgressPosition := JvProgressComponent1.ProgressPosition + 1;
@@ -772,6 +863,72 @@ begin
   end;
 end;
 
+procedure TMainForm.ActionViewExecute(Sender: TObject);
+var
+  FileName, Parameters, WorkingFolder: string;
+  Error: integer;
+  OK: boolean;
+begin
+  FileName := JvEdit_GeoViewPath.Text + '\geoviewer.exe ';
+  WorkingFolder := ''; // if empty function will extract path from FileName
+  Parameters := '-g 0 -f ' + '"' + ChangeFileExt(FNameIn, '.tmt') + '"'; // can be empty
+
+  if (JvCheckBox_ShowMax.Checked) then
+    Parameters := '-m ' + Parameters;
+
+  OK := ExecuteProcess(FileName, Parameters, WorkingFolder, false, false, false, Error);
+  if not OK then ShowMessage('Error: ' + IntToStr(Error));
+end;
+
+procedure TMainForm.BComPort1Error(Sender: TObject; Errors: TComErrors);
+begin
+  FBreak := True;
+  if ceRxParity in Errors then
+    ShowMessage('Parity error!')
+  else if ceOverrun in Errors then
+    ShowMessage('Over run error transmiting!')
+  else
+    ShowMessage('Unknowing error transmiting!');
+end;
+
+function ExecuteProcess(const FileName, Params: string; Folder: string; WaitUntilTerminated, WaitUntilIdle, RunMinimized: boolean;
+  var ErrorCode: integer): boolean;
+var
+  CmdLine: string;
+  WorkingDirP: PChar;
+  StartupInfo: TStartupInfo;
+  ProcessInfo: TProcessInformation;
+begin
+  Result := true;
+  CmdLine := '"' + FileName + '" ' + Params;
+  if Folder = '' then Folder := ExcludeTrailingPathDelimiter(ExtractFilePath(FileName));
+  ZeroMemory(@StartupInfo, SizeOf(StartupInfo));
+  StartupInfo.cb := SizeOf(StartupInfo);
+  if RunMinimized then
+    begin
+      StartupInfo.dwFlags := STARTF_USESHOWWINDOW;
+      StartupInfo.wShowWindow := SW_SHOWMINIMIZED;
+    end;
+  if Folder <> '' then WorkingDirP := PChar(Folder)
+  else WorkingDirP := nil;
+  if not CreateProcess(nil, PChar(CmdLine), nil, nil, false, 0, nil, WorkingDirP, StartupInfo, ProcessInfo) then
+    begin
+      Result := false;
+      ErrorCode := GetLastError;
+      exit;
+    end;
+  with ProcessInfo do
+    begin
+      CloseHandle(hThread);
+      if WaitUntilIdle then WaitForInputIdle(hProcess, INFINITE);
+      if WaitUntilTerminated then
+        repeat
+          Application.ProcessMessages;
+        until MsgWaitForMultipleObjects(1, hProcess, false, INFINITE, QS_ALLINPUT) <> WAIT_OBJECT_0 + 1;
+      CloseHandle(hProcess);
+    end;
+end;
+
 procedure TMainForm.BComPort1TxEmpty(Sender: TObject);
 begin
   FEmpty := True; // Все данные ушли из буфера порта, можно передавать еще пакет
@@ -782,8 +939,6 @@ var
   I : Integer;
   S : string;
 begin
-
-
     for I := 0 to MainForm.ComponentCount -1 do
     begin
       if ((MainForm.Components[I] is TButton) or
@@ -793,26 +948,26 @@ begin
           (MainForm.Components[I] is TJvEdit) or
           (MainForm.Components[I] is TAction)) then
         begin
-
-
           if Enabled then
           begin
             TControl(Components[I]).Enabled := True;
-
             ActionProcess.Enabled := True;
             ActionSend.Enabled := True;
             ActionSave.Enabled := True;
             ActionExit.Enabled := True;
             ActionAbout.Enabled := True;
+            ActionFind_Out.Enabled := True;
+            ActionView.Enabled := True;
           end
           else begin
             TControl(Components[I]).Enabled := False;
-
             ActionProcess.Enabled := False;
             ActionSend.Enabled := False;
             ActionSave.Enabled := False;
             ActionExit.Enabled := False;
             ActionAbout.Enabled := False;
+            ActionFind_Out.Enabled := False;
+            ActionView.Enabled := False;
           end;
         end;
 
@@ -849,11 +1004,9 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  StyleName : string;
 begin
-
-
-
-
   WithOutHSenList := TList<Integer>.Create;
   CallSubprogramList := TList<Integer>.Create;
   TechTableList  := TList<Integer>.Create;
@@ -863,7 +1016,37 @@ begin
   MesureList :=TList<Integer>.Create;
   CommentsList := TList<Integer>.Create;
 
+  LoadParams;
 
+//  for StyleName in TStyleManager.StyleNames do
+//    JvComboBox_StyleSelector.Items.Add(StyleName);
+//
+//  LoadStyle := JvAppIniFileStorage1.ReadString('MainForm\Theme');
+//  TStyleManager.SetStyle(LoadStyle);
+//
+//  JvComboBox_StyleSelector.ItemIndex := JvComboBox_StyleSelector.Items.IndexOf(TStyleManager.ActiveStyle.Name);
+end;
+
+procedure TMainForm.LoadParams;
+begin
+  Port :=  JvAppIniFileStorage1.ReadString('COMPort\Port');
+  EnumComPorts(JvComboBox_COMPort.Items);
+  JvComboBox_COMPort.Text := Port;
+
+  BaudRate := JvAppIniFileStorage1.ReadInteger('COMPort\BaudRate');
+  JvComboBox_Baudrate.ItemIndex := BaudRate;
+
+  ByteSize := JvAppIniFileStorage1.ReadInteger('COMPort\ByteSize');
+  JvComboBox_ByteSize.ItemIndex := ByteSize;
+
+  StopBits := JvAppIniFileStorage1.ReadInteger('COMPort\StopBits');
+  JvComboBox_StopBits.ItemIndex := StopBits;
+
+  Parity := JvAppIniFileStorage1.ReadInteger('COMPort\Parity');
+  JvComboBox_Parity.ItemIndex := Parity;
+
+  OutBufSize := JvAppIniFileStorage1.ReadInteger('COMPort\OutBufSize');
+  JvEdit_BuffSize.Text := IntToStr(OutBufSize);
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -876,6 +1059,7 @@ begin
   FreeAndNil(AllPircingList);
   FreeAndNil(MesureList);
   FreeAndNil(CommentsList);
+
 end;
 
 procedure TMainForm.FormResize(Sender: TObject);
@@ -898,42 +1082,67 @@ begin
   end;
 end;
 
+procedure TMainForm.JvBrowseForFolderDialog1Change(Sender: TObject;
+  const Directory: string);
+begin
+  JvEdit_GeoViewPath.Text := Directory;
+end;
+
+procedure TMainForm.JvComboBox_StyleSelectorChange(Sender: TObject);
+begin
+  JvDragDrop1.AcceptDrag := False;
+end;
+
+procedure TMainForm.JvComboBox_StyleSelectorSelect(Sender: TObject);
+begin
+//
+//  TStyleManager.SetStyle(JvComboBox_StyleSelector.Text);
+//    JvDragDrop1.AcceptDrag := True;
+end;
+
 procedure TMainForm.JvDragDrop1Drop(Sender: TObject; Pos: TPoint;
   Value: TStrings);
 begin
-  MainForm.FileDroped(Value[0]);
+  FileDroped(Value[0]);
+  GetDataFromFile;        //Collect data from file
 end;
 
 procedure TMainForm.JvDragDrop2Drop(Sender: TObject; Pos: TPoint;
   Value: TStrings);
+var
+  newFileName : string;
 begin
   JvMemoOut.Clear;
   ActionSend.Enabled := True;
   ActionSave.Enabled := True;
+  MenuItem1.Enabled := True;
   JvMemoOut.Lines.LoadFromFile(Value[0]);
 
   FNameOut := Value[0];
   SetStatus(3, Format('File: %s', [FNameOut]));
   SetStatus(2, Format('Lines: %d', [JvMemoOut.Lines.Count]));
+
+  newFileName := ChangeFileExt(Value[0], '.tmt');
+
+  FNameIn := Value[0];
+
+  if (FileExists(newFileName)) then
+    ActionView.Enabled := True
+  else
+    ActionView.Enabled := False;
 end;
 
 procedure TMainForm.JvDragDrop3Drop(Sender: TObject; Pos: TPoint;
   Value: TStrings);
 begin
-  MainForm.Tcogeoview1.Filename := Value[0];
+//  MainForm.Tcogeoview1.Filename := Value[0];
   SetStatusView;
-end;
-
-procedure TMainForm.JvMemoInChange(Sender: TObject);
-begin
-  MainForm.GetDataFromFile;        //Collect data from file
 end;
 
 procedure TMainForm.JvProgressComponent1Close(Sender: TObject);
 begin
   FBreak := True;
 end;
-
 
 procedure TMainForm.JvRadioGroupSelectPiercingClick(Sender: TObject);
 begin
@@ -963,10 +1172,7 @@ begin
   for I := 0 to lst.Count-1 do
   begin
     Str := Str + lst.Items[I].ToString + #10#13;
-
   end;
-
-
   ShowMessage(Str);
 end;
 

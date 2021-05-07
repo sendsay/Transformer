@@ -17,8 +17,8 @@ begin
 
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Aqua Graphite');
   Application.Title := 'Transfromer';
-  TStyleManager.TrySetStyle('Ruby Graphite');
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TAboutForm, AboutForm);
   Application.CreateForm(TAboutForm, AboutForm);
