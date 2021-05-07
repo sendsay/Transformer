@@ -628,8 +628,7 @@ object MainForm: TMainForm
           ScrollBars = ssBoth
           ShowHint = False
           TabOrder = 1
-          ExplicitLeft = -13
-          ExplicitTop = 27
+          OnChange = JvMemoInChange
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
@@ -645,8 +644,6 @@ object MainForm: TMainForm
           ScrollBars = ssBoth
           ShowHint = True
           TabOrder = 2
-          ExplicitLeft = 363
-          ExplicitTop = 27
         end
       end
       object JvPanel3: TJvPanel
@@ -1169,7 +1166,7 @@ object MainForm: TMainForm
     Left = 876
     Top = 223
     Bitmap = {
-      494C010101004C00480080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101004C00500080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A

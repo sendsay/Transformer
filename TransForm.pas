@@ -140,6 +140,7 @@ type
     procedure JvBrowseForFolderDialog1Change(Sender: TObject;
       const Directory: string);
     procedure ActionViewExecute(Sender: TObject);
+    procedure JvMemoInChange(Sender: TObject);
 
 
   private
@@ -1104,7 +1105,6 @@ procedure TMainForm.JvDragDrop1Drop(Sender: TObject; Pos: TPoint;
   Value: TStrings);
 begin
   FileDroped(Value[0]);
-  GetDataFromFile;        //Collect data from file
 end;
 
 procedure TMainForm.JvDragDrop2Drop(Sender: TObject; Pos: TPoint;
@@ -1137,6 +1137,11 @@ procedure TMainForm.JvDragDrop3Drop(Sender: TObject; Pos: TPoint;
 begin
 //  MainForm.Tcogeoview1.Filename := Value[0];
   SetStatusView;
+end;
+
+procedure TMainForm.JvMemoInChange(Sender: TObject);
+begin
+  GetDataFromFile;        //Collect data from file
 end;
 
 procedure TMainForm.JvProgressComponent1Close(Sender: TObject);
