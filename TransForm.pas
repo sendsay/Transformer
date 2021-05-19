@@ -16,24 +16,24 @@ uses
   {TCOGEOVIEWLib_TLB,} JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
   Vcl.StdActns, System.TypInfo, System.UITypes, JvCommStatus, JvCombobox,
   JvListBox, Vcl.Mask, JvExMask, JvToolEdit, JvGroupHeader, JvGroupBox, Vcl.Themes,
-  JvBaseDlg, JvBrowseFolder;
+  JvBaseDlg, JvBrowseFolder, Winapi.ShellAPI;
 type
   TMainForm = class(TForm)
     JvPanel1: TJvPanel;
     JvPanel2: TJvPanel;
     JvPanel3: TJvPanel;
     JvRadioGroupSelectTable: TJvRadioGroup;
-    Button1: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
+    btn_ActionExit: TButton;
+    btn_ActionSave: TButton;
+    btn_ActionSend: TButton;
+    btn_ActionAbout: TButton;
     JvStatusBar1: TJvStatusBar;
     ActionList1: TActionList;
     ActionExit: TAction;
     ActionAbout: TAction;
     ActionSend: TAction;
     ActionSave: TAction;
-    Button2: TButton;
+    btn_ActionProcess: TButton;
     ActionProcess: TAction;
     JvCheckBoxSensorUp: TJvCheckBox;
     JvCheckBoxDeleteNewTable: TJvCheckBox;
@@ -61,13 +61,6 @@ type
     JvRadioGroupSelectPiercing: TJvRadioGroup;
     JvPanel4: TJvPanel;
     JvRadioGroupCircleMesure: TJvRadioGroup;
-    JvPanel5: TJvPanel;
-    JvPanel8: TJvPanel;
-    JvPanel9: TJvPanel;
-    JvPanel10: TJvPanel;
-    JvPanel11: TJvPanel;
-    JvPanel7: TJvPanel;
-    JvPanel6: TJvPanel;
     JvCheckBoxLookAHead: TJvCheckBox;
     JvStatusBar2: TJvStatusBar;
     BComPort1: TBComPort;
@@ -104,8 +97,7 @@ type
     ActionFind_In: TAction;
     ActionFind_Out: TAction;
     JvCheckBox_SlashPiercing: TJvCheckBox;
-    JvPanel12: TJvPanel;
-    Button8: TButton;
+    btn_ActionView: TButton;
     ActionView: TAction;
     JvGroupBox3: TJvGroupBox;
     Label10: TLabel;
@@ -114,6 +106,18 @@ type
     Button9: TButton;
     ActionBrowseGeoView: TAction;
     JvCheckBox_ShowMax: TJvCheckBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    btn_Report: TButton;
+    Panel10: TPanel;
+    ActionReport: TAction;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -132,7 +136,6 @@ type
     procedure BComPort1Error(Sender: TObject; Errors: TComErrors);
     procedure ActionApplyExecute(Sender: TObject);
     procedure JvComboBox_StyleSelectorChange(Sender: TObject);
-    procedure ActionSaveThemeExecute(Sender: TObject);
     procedure JvComboBox_StyleSelectorSelect(Sender: TObject);
     procedure ActionFind_InExecute(Sender: TObject);
     procedure ActionFind_OutExecute(Sender: TObject);
@@ -141,12 +144,14 @@ type
       const Directory: string);
     procedure ActionViewExecute(Sender: TObject);
     procedure JvMemoInChange(Sender: TObject);
+    procedure ActionReportExecute(Sender: TObject);
 
 
   private
     { Private declarations }
     FBreak: Boolean;                                // Transmiting canceled
     FEmpty: Boolean;                                // Trasmiting buffer is EMPTY!
+
   public
     { Public declarations }
     WithOutHSenList : TList<Integer>;               //List of pos height sensor
@@ -169,8 +174,6 @@ type
     Parity : Integer;                               // Parity
     StopBits : Integer;                             // StopBits
 
-    LoadStyle : string;                             // Style name
-
     procedure FileDroped(FileName : string);          //Load file to memo and tune up buttons
     procedure GetDataFromFile;                        //Get all data about file
     procedure StatusProgress(Progress : Integer);     //Set progress to progress bar
@@ -192,6 +195,9 @@ implementation
 
 uses
   About;
+
+var
+   ProcID : Cardinal;
 
 {$R *.dfm}
 
@@ -281,9 +287,6 @@ begin
             MainForm.JvEditProgNumber.Text := S;
           end;
           MainForm.iProgramNamePos := I;
-
-//          MainForm.ProgramNumberList.Add(I);
-//          SearchPircing := True;
         end;
 
         Expression := 'N\d+Q\d*';         //Gets call subprogram
@@ -334,16 +337,12 @@ begin
     SetStatus(0, Format('Lines: %d', [JvMemoIn.Lines.Count]));
     SetStatus(1, Format('File: %s', [FNameIn]));
   end;
-
-
-//   ShowList(MainForm.iProgramNamePos);  /
-
 end;
 
 procedure TMainForm.FileDroped(FileName : string);
 var
   ViewFName : string;
-  newFileName : string;
+  newViewFileName, newReportFileName : string;
 begin
   MainForm.Cursor := crHourGlass;
   MainForm.JvMemoIn.Clear;
@@ -356,12 +355,17 @@ begin
   ActionProcess.Enabled := True;
   ActionFind_In.Enabled := True;
 
-  newFileName := ChangeFileExt(FileName, '.tmt');
-
-  if (FileExists(newFileName)) then
+  newViewFileName := ChangeFileExt(FileName, '.tmt');
+  if (FileExists(newViewFileName)) then
     ActionView.Enabled := True
   else
     ActionView.Enabled := False;
+
+  newReportFileName := ChangeFileExt(FileName, '.pdf');
+  if (FileExists(newReportFileName)) then
+    ActionReport.Enabled := True
+  else
+    ActionReport.Enabled := False;
 
   MainForm.Cursor := crDefault;
 end;
@@ -369,9 +373,6 @@ end;
 procedure SetStatusView;
 begin
   MainForm.JvStatusBar2.Panels[0].Text := 'File name: ' + MainForm.FNameIn;
-//  MainForm.JvStatusBar2.Panels[1].Text := 'max X :' + MainForm.Tcogeoview1.getZeichnungMaxX.ToString;
-//  MainForm.JvStatusBar2.Panels[2].Text := 'max Y :' + MainForm.Tcogeoview1.getZeichnungMaxY.ToString;
-
 end;
 
 procedure TMainForm.ActionFind_InExecute(Sender: TObject);
@@ -723,7 +724,6 @@ begin
 
   JvMemoOut.Lines.EndUpdate;
 
-
   FreeAndNil(Reg);
   OnePircingContour := False;
 
@@ -748,19 +748,19 @@ begin
   MainForm.Cursor := crDefault;
 end;
 
+procedure TMainForm.ActionReportExecute(Sender: TObject);
+var
+  newReportFileName : string;
+begin
+  newReportFileName := ChangeFileExt(FNameIn, '.pdf');
+  ShellExecute(Handle,'open', PWideChar(newReportFileName), nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TMainForm.ActionSaveExecute(Sender: TObject);
 begin
   JvSaveDialog1.FileName := FNameIn;
   if JvSaveDialog1.Execute then
     MainForm.JvMemoOut.Lines.SaveToFile(JvSaveDialog1.FileName);
-end;
-
-procedure TMainForm.ActionSaveThemeExecute(Sender: TObject);
-begin
-  if MessageDlg('Are you sure?', mtConfirmation, mbYesNo, 0) = mrNo then Exit;
-
-  JvAppIniFileStorage1.WriteString('MainForm\Theme', JvComboBox_StyleSelector.Text);
-
 end;
 
 procedure TMainForm.ActionSendExecute(Sender: TObject);
@@ -869,16 +869,20 @@ var
   FileName, Parameters, WorkingFolder: string;
   Error: integer;
   OK: boolean;
+  bSwitch : Boolean;
 begin
   FileName := JvEdit_GeoViewPath.Text + '\geoviewer.exe ';
   WorkingFolder := ''; // if empty function will extract path from FileName
   Parameters := '-g 0 -f ' + '"' + ChangeFileExt(FNameIn, '.tmt') + '"'; // can be empty
 
   if (JvCheckBox_ShowMax.Checked) then
-    Parameters := '-m ' + Parameters;
+    Parameters := '-m ' + Parameters
+  else
+    Parameters := '-w 1100 -h 600 ' + Parameters;
 
   OK := ExecuteProcess(FileName, Parameters, WorkingFolder, false, false, false, Error);
   if not OK then ShowMessage('Error: ' + IntToStr(Error));
+
 end;
 
 procedure TMainForm.BComPort1Error(Sender: TObject; Errors: TComErrors);
@@ -928,7 +932,10 @@ begin
         until MsgWaitForMultipleObjects(1, hProcess, false, INFINITE, QS_ALLINPUT) <> WAIT_OBJECT_0 + 1;
       CloseHandle(hProcess);
     end;
+
+    ProcID := ProcessInfo.hThread;
 end;
+
 
 procedure TMainForm.BComPort1TxEmpty(Sender: TObject);
 begin
@@ -942,12 +949,12 @@ var
 begin
     for I := 0 to MainForm.ComponentCount -1 do
     begin
-      if ((MainForm.Components[I] is TButton) or
-          (MainForm.Components[I] is TJvPanel) or
+      if ({(MainForm.Components[I] is TButton) or
+          (MainForm.Components[I] is TJvPanel) or }
           (MainForm.Components[I] is TJvRadioGroup) or
           (MainForm.Components[I] is TJvCheckBox) or
-          (MainForm.Components[I] is TJvEdit) or
-          (MainForm.Components[I] is TAction)) then
+          (MainForm.Components[I] is TJvEdit){ or
+          (MainForm.Components[I] is TAction)}) then
         begin
           if Enabled then
           begin
@@ -958,8 +965,7 @@ begin
             ActionExit.Enabled := True;
             ActionAbout.Enabled := True;
             ActionFind_Out.Enabled := True;
-            ActionView.Enabled := True;
-          end
+           end
           else begin
             TControl(Components[I]).Enabled := False;
             ActionProcess.Enabled := False;
@@ -968,7 +974,6 @@ begin
             ActionExit.Enabled := False;
             ActionAbout.Enabled := False;
             ActionFind_Out.Enabled := False;
-            ActionView.Enabled := False;
           end;
         end;
 

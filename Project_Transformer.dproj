@@ -160,12 +160,12 @@
         <UWP_DelphiLogo44>Logo2.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>Logo1.png</UWP_DelphiLogo150>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
-        <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Release>3</VerInfo_Release>
-        <VerInfo_Build>21</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Shpakov Vladyslav;FileDescription=Transform Gcode file;FileVersion=2.2.3.21;InternalName=Transformer;LegalCopyright=Shpakov Vladyslav;LegalTrademarks=Shpakov Vladyslav;OriginalFilename=Project_Transformer.exe;ProgramID=com.yahoo.sendsay.Transformer;ProductName=Transformer;ProductVersion=2.2;Comments=Using This !!! :)</VerInfo_Keys>
+        <VerInfo_MinorVer>3</VerInfo_MinorVer>
+        <VerInfo_Build>28</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Shpakov Vladyslav;FileDescription=Transform Gcode file;FileVersion=2.3.0.28;InternalName=Transformer;LegalCopyright=Shpakov Vladyslav;LegalTrademarks=Shpakov Vladyslav;OriginalFilename=Project_Transformer.exe;ProgramID=com.yahoo.sendsay.Transformer;ProductName=Transformer;ProductVersion=2.3;Comments=Using This !!! :)</VerInfo_Keys>
         <Icon_MainIcon>Logo.ico</Icon_MainIcon>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <Debugger_RunParams>C:\cut_1.LST</Debugger_RunParams>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -223,7 +223,7 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Logo1.png" Configuration="Debug" Class="UWP_DelphiLogo150">
-                    <Platform Name="Win32">
+                    <Platform Name="Win64">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo150x150.png</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -249,14 +249,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Logo1.png" Configuration="Debug" Class="UWP_DelphiLogo150">
-                    <Platform Name="Win64">
+                <DeployFile LocalName="Logo.png" Configuration="Debug" Class="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo150x150.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Logo.png" Configuration="Debug" Class="UWP_DelphiLogo150">
+                <DeployFile LocalName="Logo1.png" Configuration="Debug" Class="UWP_DelphiLogo150">
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo150x150.png</RemoteName>
