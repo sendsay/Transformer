@@ -17,7 +17,7 @@ uses
   Vcl.StdActns, System.TypInfo, System.UITypes, JvCommStatus, JvCombobox,
   JvListBox, Vcl.Mask, JvExMask, JvToolEdit, JvGroupHeader, JvGroupBox, Vcl.Themes,
   JvBaseDlg, JvBrowseFolder, Winapi.ShellAPI, Vcl.WinXCtrls, Vcl.WinXPanels,
-  JvFormMagnet;
+  JvFormMagnet, JvAppInst;
 type
   TMainForm = class(TForm)
     JvPanel1: TJvPanel;
@@ -120,6 +120,7 @@ type
     Panel10: TPanel;
     ActionReport: TAction;
     JvFormMagnet1: TJvFormMagnet;
+    JvAppInstances1: TJvAppInstances;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);
@@ -147,6 +148,7 @@ type
     procedure ActionViewExecute(Sender: TObject);
     procedure JvMemoInChange(Sender: TObject);
     procedure ActionReportExecute(Sender: TObject);
+    procedure JvAppInstances1Rejected(Sender: TObject);
 
 
   private
@@ -1088,6 +1090,12 @@ begin
     JvPageControl1.ActivePage := TabSheetTransform;
     MainForm.FileDroped(ParamStr(1));
   end;
+end;
+
+procedure TMainForm.JvAppInstances1Rejected(Sender: TObject);
+begin
+  ShowMessage('The application is already running!!!');
+  Exit;
 end;
 
 procedure TMainForm.JvBrowseForFolderDialog1Change(Sender: TObject;
