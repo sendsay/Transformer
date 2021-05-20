@@ -16,7 +16,8 @@ uses
   {TCOGEOVIEWLib_TLB,} JvFindReplace, JvAppHotKey, Vcl.Menus, JvMenus, Clipbrd,
   Vcl.StdActns, System.TypInfo, System.UITypes, JvCommStatus, JvCombobox,
   JvListBox, Vcl.Mask, JvExMask, JvToolEdit, JvGroupHeader, JvGroupBox, Vcl.Themes,
-  JvBaseDlg, JvBrowseFolder, Winapi.ShellAPI;
+  JvBaseDlg, JvBrowseFolder, Winapi.ShellAPI, Vcl.WinXCtrls, Vcl.WinXPanels,
+  JvFormMagnet;
 type
   TMainForm = class(TForm)
     JvPanel1: TJvPanel;
@@ -118,6 +119,7 @@ type
     btn_Report: TButton;
     Panel10: TPanel;
     ActionReport: TAction;
+    JvFormMagnet1: TJvFormMagnet;
     procedure ActionExitExecute(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure JvDragDrop1Drop(Sender: TObject; Pos: TPoint; Value: TStrings);

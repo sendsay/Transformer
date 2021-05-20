@@ -39,10 +39,8 @@ object MainForm: TMainForm
     TabPainter = JvTabDefaultPainter1
     ParentColor = False
     Color = clSilver
-    ExplicitHeight = 701
     object TabSheetTransform: TTabSheet
       Caption = 'Transform'
-      ExplicitHeight = 670
       object JvPanel1: TJvPanel
         Left = 794
         Top = 32
@@ -56,7 +54,6 @@ object MainForm: TMainForm
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 616
         object JvCheckBoxSensorUp: TJvCheckBox
           AlignWithMargins = True
           Left = 5
@@ -368,7 +365,6 @@ object MainForm: TMainForm
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 9
-          ExplicitTop = 411
           object Panel2: TPanel
             Left = 0
             Top = 105
@@ -622,14 +618,12 @@ object MainForm: TMainForm
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitHeight = 616
         object JvxSplitter1: TJvxSplitter
           Left = 366
           Top = 0
           Width = 10
           Height = 609
           Align = alLeft
-          ExplicitHeight = 616
         end
         object JvMemoIn: TJvMemo
           AlignWithMargins = True
@@ -647,7 +641,6 @@ object MainForm: TMainForm
           ShowHint = False
           TabOrder = 1
           OnChange = JvMemoInChange
-          ExplicitHeight = 610
         end
         object JvMemoOut: TJvMemo
           AlignWithMargins = True
@@ -663,7 +656,6 @@ object MainForm: TMainForm
           ScrollBars = ssBoth
           ShowHint = True
           TabOrder = 2
-          ExplicitHeight = 610
         end
       end
       object JvPanel3: TJvPanel
@@ -800,7 +792,6 @@ object MainForm: TMainForm
             Width = 100
             Control = JvProgressBar1
           end>
-        ExplicitTop = 648
         object JvProgressBar1: TJvProgressBar
           Left = 463
           Top = 3
@@ -1192,7 +1183,7 @@ object MainForm: TMainForm
     Left = 668
     Top = 247
     Bitmap = {
-      494C010101004C00640080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101004C00680080008000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000200008000000001002000000000000000
       040000000000000000000000000000000000999DDF00636ACF00636ACF00636A
       CF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636ACF00636A
@@ -9746,5 +9737,10 @@ object MainForm: TMainForm
     OnChange = JvBrowseForFolderDialog1Change
     Left = 516
     Top = 235
+  end
+  object JvFormMagnet1: TJvFormMagnet
+    Active = True
+    Left = 454
+    Top = 107
   end
 end

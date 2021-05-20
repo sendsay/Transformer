@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.195,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.622,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.001,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.197,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.672,=D:\Projects\Transformer\BCPort.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.726,D:\Projects\Transformer\TransForm.dfm=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.566,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\GroupedItems1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.726,D:\Projects\Transformer\TransForm.pas=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.197,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.001,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.622,=C:\Users\sendsay\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.412,=D:\Projects\Transformer\Untitled1.htm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.618,=D:\Projects\Transformer\MainFunc.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.321,=D:\Projects\Transformer\RegExpr.pas</Transaction>
